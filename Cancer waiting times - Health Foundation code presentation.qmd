@@ -10,9 +10,18 @@ format:
     code-link: true
     code-overflow: wrap
     warning: false
-    highlight-style: nord
+    highlight-style: arrow
     mainfont: Poppins
 ---
+
+• A brief explanation of what problem you are trying to solve and the data you have used
+    
+• The approach you have taken to solving the problem
+    Linear regression models to make predictions on patient volumes over the next 5 years. Ran different 3 different models with different start dates to get best estimates, ultimately settling on the model that used all available historical data. There was some debate about using more recent models, but it seemed likely they overinterpreted some recent trends. 
+• What you learned in this project from an analysis and coding perspective
+    One of my big learnings was to always keep in mind what the goal for a piece of work is. For this, the goal was to warn about potential problems in cancer care if nothing changed. The goal wasn't to model the best predictions for what will happen in the next five years. 
+• Reflections on what you would do differently in another project
+    I would still have liked to explore a more robust modelling approach to this piece, maybe a general additive model so that we could build in some degree of plateau to the predictions, but time wasn't available to do that - especially after the poisson model we were using didn't seem to produce reliable results. 
 
 ## Project aims
 
@@ -509,7 +518,7 @@ predictions_ENG <- CWT62ENGsplit %>%
       bind_rows(df, future_dates)
     }),
     
-    # Fits quasi gaussian regression models to each list element using non NA i.e. historic data for COUNT in order to be used to offset the outside_target model
+    # Fits gaussian regression models to each list element using non NA i.e. historic data for COUNT in order to be used to offset the outside_target model
     count_model_09 = map(data, \(df) glm(count ~ month_no, gaussian(), data = df %>% filter(!is.na(count)))),
     count_model_19 = map(data, \(df) glm(count ~ month_no, gaussian(), data = df %>% filter(!is.na(count) & date > "2019-01-01"))),
     count_model_21 = map(data, \(df) glm(count ~ month_no, gaussian(), data = df %>% filter(!is.na(count) & date > "2021-01-01"))),
@@ -627,9 +636,6 @@ coef <- (exp(YearInc$coef[2])-1)*100
 EnglandAnnualFigures <- EnglandAnnualFigures %>%
   mutate(increase = (coef / 100) * lag(count, n = 1L),
          new_total = count+ increase)
-
-#average yearly increase in numbers
-CRUKRoundingPerYear(mean(EnglandAnnualFigures$increase, na.rm = TRUE))
 ```
 
 ```{r}
@@ -720,3 +726,7 @@ plot_ly(predictions_ENG_all) %>%
     margin = list(t = 75, b = 10) #Set margin sizes with t, b, r, l. 
   ) 
 ```
+
+## What would I do differently?
+
+Initially I had started out using a poisson/quasi-poisson model approach with some adjustments (such as varying the number of natural splines). 
