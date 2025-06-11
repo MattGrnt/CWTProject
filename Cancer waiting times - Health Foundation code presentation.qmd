@@ -12,6 +12,7 @@ format:
     warning: false
     highlight-style: arrow
     mainfont: Poppins
+    self-contained: true
 ---
 
 • A brief explanation of what problem you are trying to solve and the data you have used
@@ -413,6 +414,7 @@ eng_graph
 ```
 
 ## 62 day wait
+This data set need more cleaning as it needed to adjust for some changes in the 62 day measure that happened in October 2023
 
 ```{r data_cleaning}
 CWT62 <- read_csv("data/CWT_62day_By cancer site_2024-09-05.csv", show_col_types = FALSE) # From sst hub
