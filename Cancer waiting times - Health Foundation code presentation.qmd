@@ -1,0 +1,722 @@
+---
+title: "Cancer waiting times projections over the parliamentary term"
+editor: visual
+format:
+  html:
+    toc: true
+    toc-location: left
+    code-tools: true
+    code-fold: true
+    code-link: true
+    code-overflow: wrap
+    warning: false
+    highlight-style: nord
+    mainfont: Poppins
+---
+
+## Project aims
+
+This code was part of a project to model cancer waiting times over the next parliamentary term, during the run up to the general election with the aim of landing a high profile press story to help keep cancer high on the policy agenda, and support other influencing work.
+
+In line with this aim, there were three key pieces of information to generate:
+
+1.  Number of urgent cancer referrals being made - tracked by NHS England as urgent suspected cancer referrals
+2.  Number of people starting treatment - tracked by NHS England with their 31 day wait metric
+3.  How many won't start their treatment within the NHS England target window - tracked via the NHS England 62 day wait metric
+
+Across all 3 metrics I used guassian linear regression modelling 
+
+```{r setup}
+#| code-fold: show
+#| code-summary: "Libraries used"
+
+library(tidyverse)
+library(janitor)
+library(rms)
+library(plotly)
+library(readxl)
+library(zoo)
+```
+
+```{r}
+#| code-summary: rounding function
+
+CRUKRoundingPerYear <- function(number){
+  # number <- 10050000
+  number <-  case_when(
+    number >= 100000000 & number - floor(number / 1000000) * 1000000 == 500 ~ number + 1,
+    number >= 100000000 ~ number,
+    number >= 10000000  & number - floor(number / 100000)  * 100000  == 500 ~ number + 1,
+    number >= 10000000  ~ number,
+    number >= 1000000   & number - floor(number / 10000)   * 10000   == 500 ~ number + 1,
+    number >= 1000000   ~ number,
+    number >= 100000    & number - floor(number / 1000)    * 1000    == 500 ~ number + 1,
+    number >= 100000    ~ number,
+    number >= 10000     & number - floor(number / 100)     * 100     == 50  ~ number + 1,
+    number >= 10000     ~ number,
+    number >= 1000      & number - floor(number / 100)     * 100     == 50  ~ number + 1,
+    number >= 1000      ~ number,
+    number >= 100       & number - floor(number / 10)      * 10      == 5   ~ number + 0.01,
+    number >= 100       ~ number,
+    number >= 10        & number - floor(number / 1)       * 1       == 0.5 ~ number + 0.0001,
+    number >= 10        ~ number,
+    TRUE ~ number)
+  
+  numbertext <- case_when(
+    number >= 100000000 & number - floor(number/1000000)*1000000 >= 900 ~
+      paste0("around ", format(signif(number, digits = 3),
+                               big.mark=",", scientific = FALSE)),
+    number >= 100000000 & number - floor(number/1000000)*1000000 >= 700 ~
+      paste0("nearly ", format(signif(number, digits = 3),
+                               big.mark=",", scientific = FALSE)),
+    number >= 100000000 & number - floor(number/1000000)*1000000 >= 200 ~
+      paste0("more than ", format(signif(floor(number/100000)*100000, digits = 3),
+                                  big.mark=",", scientific = FALSE)),
+    number >= 100000000 ~
+      paste0("around ",    format(signif(floor(number/100000)*100000, digits = 3),
+                                  big.mark=",", scientific = FALSE)),
+    
+    number >= 10000000 & number - floor(number/100000)*100000 >= 900 ~
+      paste0("around ", format(signif(number, digits = 3),
+                               big.mark=",", scientific = FALSE)),
+    number >= 10000000 & number - floor(number/100000)*100000 >= 700 ~
+      paste0("nearly ", format(signif(number, digits = 3), 
+                               big.mark=",", scientific = FALSE)),
+    number >= 10000000 & number - floor(number/100000)*100000 >= 200 ~
+      paste0("more than ", format(signif(floor(number/100000)*100000, digits = 3),
+                                  big.mark=",", scientific = FALSE)),
+    number >= 10000000 ~
+      paste0("around ", format(signif(floor(number/100000)*100000, digits = 3),
+                               big.mark=",", scientific = FALSE)),
+    
+    number >= 1000000 & number - floor(number/10000)*10000 >= 900 ~
+      paste0("around ", format(signif(number, digits = 3), 
+                               big.mark=",", scientific = FALSE)),
+    number >= 1000000 & number - floor(number/10000)*10000 >= 700 ~
+      paste0("nearly ", format(signif(number, digits = 3), 
+                               big.mark=",", scientific = FALSE)),
+    number >= 1000000 & number - floor(number/10000)*10000 >= 200 ~
+      paste0("more than ", format(signif(floor(number/10000)*10000, digits = 3),
+                                  big.mark=",", scientific = FALSE)),
+    number >= 1000000 ~
+      paste0("around ", format(signif(floor(number/10000)*10000, digits = 3),
+                               big.mark=",", scientific = FALSE)),
+    
+    number >= 100000 & number - floor(number/1000)*1000 >= 900 ~
+      paste0("around ", format(signif(number, digits = 3),
+                               big.mark=",", scientific = FALSE)),
+    number >= 100000 & number - floor(number/1000)*1000 >= 700 ~
+      paste0("nearly ", format(signif(number, digits = 3),
+                               big.mark=",", scientific = FALSE)),
+    number >= 100000 & number - floor(number/1000)*1000 >= 200 ~ 
+      paste0("more than ", format(signif(floor(number/1000)*1000, digits = 3),
+                                  big.mark=",", scientific = FALSE)),
+    number >= 100000 ~
+      paste0("around ", format(signif(floor(number/1000)*1000, digits = 3),
+                               big.mark=",", scientific = FALSE)),
+    
+    number >= 10000 ~
+      paste0("around ", format((round(number/100, 0)*100), big.mark=",")),
+    
+    number >= 1000 ~
+      paste0("around ", format((round(number/100, 0)*100), big.mark=",")),
+    
+    number >= 100 ~
+      paste0("around ", round(number/10, 0)*10),
+    
+    number >= 10 ~ 
+      paste0("around ", round(number/5, 0)*5),
+    
+    number >= 7.5 ~
+      paste0("around 10"),
+    
+    number >= 5 ~
+      paste0("around 5"),
+    
+    TRUE ~
+      paste0("less than 5"))
+  
+  return(numbertext)
+}
+```
+
+## Urgent cancer referrals
+
+The dataset for this came directly from NHS England and didn't need much cleaning. I initially did a few different models with different start dates
+```{r model}
+#| code-summary: code for modelling
+CWTUSC <- read_xlsx("data/CWT-CRS-National-Time-Series-Oct-2009-Jun-2024-with-Revisions.xlsx", sheet = 5, range = "B4:C181") %>%
+  clean_names() %>%
+  mutate(monthly = as.Date(monthly))
+
+## Modelling
+USCR_predictions_ENG <- CWTUSC %>%
+  mutate(month_no = 1:nrow(CWTUSC)) %>%
+  select(monthly, total) %>%
+  arrange(monthly)
+
+future_dates <- data.frame(
+  monthly = seq.Date(from = max(CWTUSC$monthly) + months(1), by = "month", length.out = 69)
+)
+
+USCR_predictions_ENG <- bind_rows(USCR_predictions_ENG, future_dates) #%>% select(-4)
+
+# Fit regression models to each list element using non NA i.e. historic data for COUNT in order to be used to offset the outside_target model
+total_model <- glm(total ~ monthly, gaussian(), data = USCR_predictions_ENG %>% filter(!is.na(total)))
+
+total_model_from19 <- glm(total ~ monthly, gaussian(), data = USCR_predictions_ENG %>% filter(!is.na(total) & monthly > "2019-01-01"))
+
+total_model_from21 <- glm(total ~ monthly, gaussian(), data = USCR_predictions_ENG %>% filter(!is.na(total) & monthly > "2021-01-01"))
+
+total_model_precovid <- glm(total ~ monthly, gaussian(), data = USCR_predictions_ENG %>% filter(!is.na(total) & monthly < "2020-03-01"))
+
+#Make predictions
+USCR_predictions_ENG <- USCR_predictions_ENG %>%
+  mutate(
+    predicted_total = predict(total_model, newdata = USCR_predictions_ENG, type = "response"),
+    predicted_total_from19 = predict(total_model_from19, newdata = USCR_predictions_ENG, type = "response"),
+    predicted_total_from21 = predict(total_model_from21, newdata = USCR_predictions_ENG, type = "response"),
+    predicted_total_precovid = predict(total_model_precovid, newdata = USCR_predictions_ENG, type = "response"),
+  )
+
+```
+
+```{r aggregate_numbers}
+## To get new aggregate number
+England_USC_prediction <- USCR_predictions_ENG %>%
+  filter(monthly > "2024-06-01" & monthly < "2029-07-01") %>%
+  summarise(
+    predicted_referrals_09 = sum(predicted_total),
+    rounded_09 = CRUKRoundingPerYear(predicted_referrals_09),
+    predicted_referrals_19 = sum(predicted_total_from19),
+    predicted_referrals_21 = sum(predicted_total_from21),
+    predicted_referrals_precovid = sum(predicted_total_precovid)
+  )
+
+AnnualPercChange <- USCR_predictions_ENG %>%
+  #mutate(year = as.numeric(format(date,'%Y'))) %>%
+  filter(monthly >= "2023-07-01" & monthly < "2029-07-01") %>%
+  mutate(year = case_when(monthly > "2023-06-01" & monthly < "2024-07-01"  ~ "2023/24",
+                          monthly > "2024-06-01" & monthly < "2025-07-01"  ~ "2024/25",
+                          monthly > "2025-06-01" & monthly < "2026-07-01"  ~ "2025/26",
+                          monthly > "2026-06-01" & monthly < "2027-07-01"  ~ "2026/27",
+                          monthly > "2027-06-01" & monthly < "2028-07-01"  ~ "2027/28",
+                          monthly > "2028-06-01" & monthly < "2029-07-01"  ~ "2028/29")) %>%
+  group_by(year) %>%
+  mutate(total = coalesce(total, predicted_total)) %>%
+  summarise(total = sum(total))
+
+AnnualPercChange <- AnnualPercChange %>%
+  mutate(percent_inc = total / AnnualPercChange[AnnualPercChange$year == "2023/24",]$total * 100,
+         count_diff = total - lag(total, n = 1L),
+         perc_diff = percent_inc - lag(percent_inc, n = 1L),
+         yearno = row_number())
+
+#increase in referrals at the end of term compared to 23/24
+USCPercChange <- round((AnnualPercChange[AnnualPercChange$year == "2028/29",]$total / AnnualPercChange[AnnualPercChange$year == "2023/24",]$total - 1) *100, 0)
+#Number
+ExtraReferrals <- (AnnualPercChange[AnnualPercChange$year == "2028/29",]$total - AnnualPercChange[AnnualPercChange$year == "2023/24",]$total)
+```
+
+By 2029, there are expected to be `{r} USCPercChange`% more urgent cancer referrals than there were during the last year, which would be `{r} CRUKRoundingPerYear(ExtraReferrals)` people being referred for urgent suspected cancer. 
+
+
+## 31 day waits
+```{r}
+CWT31 <- read_csv("data/CWT_31day_Overall_2024-09-04.csv", show_col_types = FALSE) # From sst hub
+
+# England ---- 
+
+## Filtering and tidying names of main data
+## Going to use only First treatments to match historic and other nations data like picking USC route for 62 decision.
+CWT31ENG <- CWT31 %>%
+  filter(Country == "England" & FirstOrSubsequent == "First Treatment") %>%
+  select(1:8, -Country, -FirstOrSubsequent) %>%
+  clean_names() %>%
+  mutate(date = format(floor_date(parse_date_time(date, orders = "my"), unit = "month")) %>% as.Date(format = "%Y-%m-%d"))
+
+## Modelling
+predictions_ENG <- CWT31ENG %>%
+  mutate(month_no = 1:nrow(CWT31ENG)) %>%
+        select(date, count, outside_target, month_no) %>% 
+        arrange(date)
+
+future_dates <- data.frame(date = seq.Date(from = max(CWT31ENG$date) + months(1), by = "month", length.out = 69),
+                           month_no = seq(max(predictions_ENG$month_no) + 1,
+                                                max(predictions_ENG$month_no) + 69, 
+                                                length.out=length((max(predictions_ENG$month_no)+1):(max(predictions_ENG$month_no) + 69))),
+                           outside_target = NA,
+                           count = NA)
+ 
+predictions_ENG <- bind_rows(predictions_ENG, future_dates)
+
+# Fits guassian regression models to each list element using non NA i.e. historic data for COUNT in order to be used to offset the outside_target model
+Model_31_2009 <- glm(count ~ date, gaussian(), data = predictions_ENG %>% filter(!is.na(count)))
+
+Model_31_2019 <- glm(count ~ date, gaussian(), data = predictions_ENG %>% filter(!is.na(count) & date > "2019-01-01"))
+
+Model_31_2021 <- glm(count ~ date, gaussian(), data = predictions_ENG %>% filter(!is.na(count) & date > "2021-01-01"))
+
+Model_31_precovid <- glm(count ~ date, gaussian(), data = predictions_ENG %>% filter(!is.na(count)& date < "2020-03-01"))
+
+predictions_ENG <- predictions_ENG %>% 
+  mutate(predicted_count_2009 = predict(Model_31_2009, newdata = predictions_ENG, type = "response"),
+         predicted_count_2019 = predict(Model_31_2019, newdata = predictions_ENG, type = "response"),
+         predicted_count_2021 = predict(Model_31_2021, newdata = predictions_ENG, type = "response"),
+         predicted_count_precovid = predict(Model_31_precovid, newdata = predictions_ENG, type = "response"),
+  ) %>% 
+  mutate(performance = 1-(outside_target/count),
+         average_6m_count = rollmean(count, 6, fill = NA, align = "right"),
+         average_6m_outside = rollmean(outside_target, 6, fill = NA, align = "right"),
+         average_6m_perf = 1-(average_6m_outside/average_6m_count),
+         multiplier = last(na.omit(average_6m_perf)))
+
+## To get new aggregate number
+
+predictions_ENG_summary <- predictions_ENG %>% 
+  filter(date > "2024-06-01" & date < "2029-07-01") %>% 
+  summarise(predicted_count_2009 = sum(predicted_count_2009),
+            predicted_count_2019 = sum(predicted_count_2019),
+            predicted_count_2021 = sum(predicted_count_2021),
+            predicted_count_precovid = sum(predicted_count_precovid))
+
+England_outside <- predictions_ENG %>% 
+  filter(date > "2024-06-01" & date < "2029-07-01") %>%
+  mutate(standard = 0.95,
+         additional_patients = (standard - multiplier) * predicted_count_2009) %>% #Adds in how many patients needed to meet target
+  summarise(additional_patients = sum(additional_patients)) %>% 
+  pull()
+
+
+EnglandAnnualFigures <- predictions_ENG %>%
+  mutate(year = as.numeric(format(date,'%Y'))) %>%
+  filter(date >= "2023-07-01" & date < "2029-07-01") %>%
+  mutate(year = case_when(date > "2023-06-01" & date < "2024-07-01" ~ "2023/24",
+                          date > "2024-06-01" & date < "2025-07-01" ~ "2024/25",
+                          date > "2025-06-01" & date < "2026-07-01" ~ "2025/26",
+                          date > "2026-06-01" & date < "2027-07-01" ~ "2026/27",
+                          date > "2027-06-01" & date < "2028-07-01" ~ "2027/28",
+                          date > "2028-06-01" & date < "2029-07-01" ~ "2028/29")) %>%
+  group_by(year) %>%
+  mutate(count = coalesce(count, predicted_count_2009)) %>%
+  summarise(count = sum(count))
+```
+
+```{r}
+#| code-summary: graph code
+#graph
+eng_graph <- ggplot(predictions_ENG, aes(date)) +
+  geom_line(aes(date, predicted_count_2009, 
+                colour = paste0("2009 - ", CRUKRoundingPerYear(predictions_ENG_summary$predicted_count_2009))), 
+            linetype = "solid") +
+  geom_line(data = filter(predictions_ENG, date > "2018-12-31"),
+            aes(date, predicted_count_2019, 
+                colour = paste0("2019 - ", CRUKRoundingPerYear(predictions_ENG_summary$predicted_count_2019))), 
+            linetype = "solid") +
+  geom_line(data = filter(predictions_ENG, date > "2021-01-01"),
+            aes(date, predicted_count_2021,
+                colour = paste0("2021 - ", CRUKRoundingPerYear(predictions_ENG_summary$predicted_count_2021))), 
+            linetype = "solid") +
+  annotate("segment", 
+           x = as.Date("2024-06-30"), xend = as.Date("2024-06-30"), 
+           y = 15000, yend = 38000,
+           colour = "#BBC7D9", linewidth = 1, linetype = "dashed") +
+  geom_line(aes(date, count), linewidth=0.5)+
+  labs(title = "England: 31-day model") +
+  theme_minimal() +
+  scale_x_date(date_breaks = "2 years", date_labels = "%Y", limits = c(as.Date("2010-01-01"), as.Date("2029-06-30"))) +
+  scale_color_discrete(name = "Model and prediction") + 
+  theme(axis.text.x = element_text(angle = 45), legend.position = "bottom") 
+
+eng_graph <- plot_ly(predictions_ENG) %>%
+  add_trace(x = ~date, 
+            y = ~predicted_count_2009,
+            name = paste0("2009 - ", CRUKRoundingPerYear(predictions_ENG_summary$predicted_count_2009), " people"), 
+            line = list(color = "#ff0087", dash = 'dash'), 
+            type = 'scatter', 
+            mode = 'lines') %>%
+  add_trace(data = filter(predictions_ENG, date >= "2019-01-01"),
+            x = ~date, 
+            y = ~predicted_count_2019,
+            name = paste0("2019 - ", CRUKRoundingPerYear(predictions_ENG_summary$predicted_count_2019), " people"), 
+            line = list(color = "#009cee", dash = 'dash'), 
+            type = 'scatter', 
+            mode = 'lines') %>%
+  add_trace(data = filter(predictions_ENG, date >= "2021-01-01"),
+            x = ~date, 
+            y = ~predicted_count_2021,
+            name = paste0("2021 - ", CRUKRoundingPerYear(predictions_ENG_summary$predicted_count_2021), " people"), 
+            line = list(color = "#00007e", dash = 'dash'), 
+            type = 'scatter', 
+            mode = 'lines') %>%
+  add_trace(data = filter(predictions_ENG, date >= "2009-01-01"),
+            x = ~date, 
+            y = ~count,
+            name = paste0("Historical data"), 
+            line = list(color = "#000000"), 
+            type = 'scatter', 
+            mode = 'lines') %>%
+  config(displaylogo = FALSE,
+         toImageButtonOptions = list(
+           format = "png",
+           filename = paste0("England 31 day models"),
+           width = 1400,
+           height = 600)) %>%
+  layout(
+    showlegend = TRUE, 
+    legend = list(
+      orientation = "h",
+      y = -0.1,
+      title = list(text = "Model starting year and predicted number of patients over next parliamentary term",
+                   font = list(family = "Poppins", color = "#000000", size = 18),
+                   side = "top"),
+      font =  list(family = "Poppins", color= "#000000", size= 14)
+      ),
+    yaxis = list(
+      title = "Number of people", 
+      showgrid = T, 
+      zeroline = T,
+      tickmode = 'auto',
+      tickformat = '~s',
+      nticks = 5,
+      range = c(0, 40000),
+      titlefont = list(family = "Poppins", color = "#000000", size = 18),
+      tickfont = list(family = "Poppins", color= "#000000", size= 14)),
+    xaxis = list(
+      title = "", 
+      range = c("2010-01-01", "2030-01-01"),
+      tickmode = 'auto',
+      nticks = 12,
+      showgrid = F, 
+      tickfont = list(family = "Poppins", color= "#000000", size= 14),
+      titlefont = list(family = "Poppins", color = "#000000", size = 18)),
+    title = list(text = "Number of people starting treatment on the 31-day pathway<br><sup>England</sup>", 
+                 font = list(family = "Progress Medium", 
+                             color = "#000000",size = 28),
+                 xref = 'container',
+                 xanchor = 'left',
+                 x = 0.01),
+    margin = list(t = 80, b = 30) #Set margin sizes with t, b, r, l. 
+  ) 
+
+
+eng_graph
+```
+
+## 62 day wait
+
+```{r data_cleaning}
+CWT62 <- read_csv("data/CWT_62day_By cancer site_2024-09-05.csv", show_col_types = FALSE) # From sst hub
+# England ---- 
+
+## Filtering and tidying names of main data
+CWT62ENG <- CWT62 %>%
+  filter(Country == "England" & RefRoute == "Urgent Suspected Cancer") %>%
+  select(-Country) %>%
+  clean_names() %>%
+  mutate(date = format(floor_date(parse_date_time(date, orders = "my"), unit = "month")) %>% as.Date(format = "%Y-%m-%d"))
+
+## Old other routes data NB: all sites
+CWT_historic_other_routes_allsite <- rbind(
+  (readxl::read_xlsx("data/Cancer-Waiting-Times-National-Time-Series-Oct-2009-Sep-2023-with-Revisions.xlsx", sheet = 2, range="AY4:BC172") %>% mutate(ref_route = "Screening")), # 
+  (readxl::read_xlsx("data/Cancer-Waiting-Times-National-Time-Series-Oct-2009-Sep-2023-with-Revisions.xlsx", sheet =2, range = "BF4:BJ172") %>%  mutate(ref_route = "Consultant Upgrade"))
+) %>% 
+  clean_names() %>% 
+  mutate(date = as.Date(monthly, format = "%Y-%m-%d"),
+         factor = "All") %>% 
+  select(date, factor, ref_route, total, within_standard, outside_standard) %>%
+  group_by(date, ref_route, factor) %>%
+  summarise(
+    count = round_half_up(sum(total)),
+    within_target = round_half_up(sum(within_standard)),
+    outside_target = round_half_up(sum(outside_standard)),
+    percent_within_target = within_target / count
+  ) 
+
+CWT62ENG <- bind_rows(CWT62ENG, CWT_historic_other_routes_allsite)
+rm(CWT_historic_other_routes_allsite)
+
+#Sep23-recent new routes data 
+newroutes_data <- read_csv("data/CWT_62day_By cancer site_2024-09-05.csv", show_col_types = FALSE) %>% 
+  clean_names() %>% 
+  filter(ref_route %in% c("Consultant Upgrade", "Screening") | date %in% c("Oct-23", "Nov-23", "Dec-23", "Jan-24", "Feb-24", "Mar-24", "Apr-24", "May-24", "Jun-24")) %>% 
+  filter(!factor %in% c("Urological (excl. prostate)","Prostate", "Gynaecological", "Lymphoma", "Haematological (excl. lymphoma)", "Head and neck", "Other (new grouping)", "Oesophagus and stomach", "Hepatobiliary") ) %>% #download includes both separate and combined routes for other and uro so below can remove the separate new sites
+  select(date, ref_route, total = count, within_target, outside_target)%>% 
+  mutate(date = format(floor_date(parse_date_time(date, orders = "my"), unit = "month")) %>% as.Date(format = "%Y-%m-%d"),
+         factor = "All") %>% 
+  group_by(date, ref_route, factor) %>%
+  summarise(
+    count = round_half_up(sum(total)),
+    within_target = round_half_up(sum(within_target)),
+    outside_target = round_half_up(sum(outside_target)),
+    percent_within_target = within_target / count
+  ) 
+
+CWT62ENG <- bind_rows(CWT62ENG, newroutes_data)
+rm(newroutes_data)
+
+## Fixing site names and grouping
+CWT62ENG <- CWT62ENG %>%
+  select(-standard_hit, -additional_patients, -target_last_met, -rank, -standard) %>%
+  filter(!factor %in% c("Urological (excl. prostate)", "Prostate", 
+                        "Gynaecological", "Lymphoma", "Haematological (excl. lymphoma)", 
+                        "Head and neck", "Other (new grouping)", "Oesophagus and stomach", 
+                        "Hepatobiliary") ) %>% #download includes both separate and combined routes for other and uro so below can remove the separate new sites
+  group_by(factor, ref_route, date) %>%
+  summarise(
+    count = sum(count),
+    within_target = sum(within_target),
+    outside_target = round_half_up(sum(outside_target), digits = 0),
+    percent_within_target = within_target / count
+  )
+
+CWT62ENG$ref_route <- make_clean_names(CWT62ENG$ref_route, allow_dupes = TRUE)
+
+##Split into list with each element a df a site subset
+CWT62ENGsplit <- CWT62ENG %>%
+  group_by(ref_route, factor) %>%
+  group_split(.keep = FALSE)
+
+##Adding names to each df list element
+names(CWT62ENGsplit) <- CWT62ENG %>%
+  group_by(ref_route, factor) %>%
+  group_keys() %>%
+  unite("name", ref_route:factor, sep = ":") %>%
+  pull(name)
+```
+
+```{r modelling}
+## Modelling
+predictions_ENG <- CWT62ENGsplit %>%
+  enframe(name = "list", value = "data") %>% # converts lists to single df
+  mutate(
+    # function to add 60 blank months to each df list element
+    data = map(data, \(df){ 
+      df <- df %>%
+        mutate(date = as.Date(date),
+               month_no = 1:nrow(df)) %>%
+        select(date, count, outside_target, month_no) %>% 
+        arrange(date)
+      last_date <- max(df$date)
+      last_no <- max(df$month_no)
+      #future_dates <- seq.Date(from = last_date + months(1), by = "month", length.out = 60)
+      future_dates <- data.frame(date = seq.Date(from = last_date + months(1), by = "month", length.out = 69),
+                                 month_no = seq(last_no + 1,
+                                                last_no + 69, 
+                                                length.out=length((last_no+1):(last_no + 69))),
+                                 outside_target = NA,
+                                 count = NA)
+      bind_rows(df, future_dates)
+    }),
+    
+    # Fits quasi gaussian regression models to each list element using non NA i.e. historic data for COUNT in order to be used to offset the outside_target model
+    count_model_09 = map(data, \(df) glm(count ~ month_no, gaussian(), data = df %>% filter(!is.na(count)))),
+    count_model_19 = map(data, \(df) glm(count ~ month_no, gaussian(), data = df %>% filter(!is.na(count) & date > "2019-01-01"))),
+    count_model_21 = map(data, \(df) glm(count ~ month_no, gaussian(), data = df %>% filter(!is.na(count) & date > "2021-01-01"))),
+    count_model_precovid = map(data, \(df) glm(count ~ month_no, gaussian(), data = df %>% filter(!is.na(count) & date < "2020-03-01"))),
+    
+    # function to use the models to predict the NA rows for count
+    data = map2(count_model_09, data, \(mod, df) { 
+      data <- df
+      data$predicted_count_09 <- predict(mod, newdata = data, type = "response")
+      data$predicted_count_09 <- data$predicted_count_09
+     # data$predicted_count_09[!is.na(data$count)] <- NA #Remove predictions for data we already have as redundant
+      data
+    }),
+    data = map2(count_model_19, data, \(mod, df) { 
+      data <- df
+      data$predicted_count_19 <- predict(mod, newdata = data, type = "response")
+      data$predicted_count_19 <- data$predicted_count_19
+     # data$predicted_count_19[!is.na(data$count)] <- NA #Remove predictions for data we already have as redundant
+      data
+    }),
+    data = map2(count_model_21, data, \(mod, df) { 
+      data <- df
+      data$predicted_count_21 <- predict(mod, newdata = data, type = "response")
+      data$predicted_count_21 <- data$predicted_count_21
+      #data$predicted_count_21[!is.na(data$count)] <- NA #Remove predictions for data we already have as redundant
+      data
+    }),
+    data = map2(count_model_precovid, data, \(mod, df) { 
+      data <- df
+      data$predicted_count_precovid <- predict(mod, newdata = data, type = "response")
+      data$predicted_count_precovid <- data$predicted_count_precovid
+      #data$predicted_count_precovid[!is.na(data$count)] <- NA #Remove predictions for data we already have as redundant
+      data
+    })
+  ) %>%
+  unnest(data) %>% 
+  select(-count_model_09, -count_model_19, count_model_21, count_model_precovid) %>% 
+  group_by(list) %>% 
+  mutate(performance = 1-(outside_target/count),
+         average_6m_count = rollmean(count, 6, fill = NA, align = "right"),
+         average_6m_outside = rollmean(outside_target, 6, fill = NA, align = "right"),
+         average_6m_perf = 1-(average_6m_outside/average_6m_count),
+         multiplier = last(na.omit(average_6m_perf))) %>% 
+  ungroup() %>%
+  separate(list, sep = ":", into = c("ref_route", "cancer_type")) %>% 
+  mutate(predicted_outside = predicted_count_09 * (1-multiplier))
+
+
+## TO see last X period averages: 
+# predictions_ENG %>% filter(date == "2024-06-01") 
+
+## To get new aggregate number
+#Projected patients starting treatment over 5 years
+England_count <- sum(filter(predictions_ENG, date >= "2024-07-01" & date < "2029-07-01")$predicted_count_09, na.rm = TRUE)
+
+#Projected number of patients needed to meet target
+England_outside <- predictions_ENG %>% 
+  filter(date > "2024-06-01" & date < "2029-07-01") %>%
+  mutate(standard = 0.85,
+         additional_patients = (standard - multiplier) * predicted_count_09) %>% #Adds in how many patients needed to meet target
+  summarise(additional_patients = sum(additional_patients)) %>% 
+  pull()
+
+
+
+predictions_ENG_all <- predictions_ENG %>% mutate(country = "England") %>%
+  group_by(date, month_no, country) %>%
+  summarise(count = sum(count),
+            outside_target = sum(outside_target),
+            predicted_count_09 = sum(predicted_count_09),
+            predicted_count_19 = sum(predicted_count_19),
+            predicted_count_21 = sum(predicted_count_21),
+            predicted_count_precovid = sum(predicted_count_precovid)) %>%
+  ungroup() %>%
+  mutate(performance = 1-(outside_target/count),
+         average_6m_count = rollmean(count, 6, fill = NA, align = "right"),
+         average_6m_outside = rollmean(outside_target, 6, fill = NA, align = "right"),
+         average_6m_perf = 1-(average_6m_outside/average_6m_count),
+         multiplier = last(na.omit(average_6m_perf))) %>% 
+  mutate(predicted_outside = predicted_count_09 * (1-multiplier),
+         ref_route = NA,
+         cancer_type = "All")
+
+# Annual change figure for England ------
+# Spoke with Sam on this one, and he suggested that the normal way to get a 
+# percentage change is to do a quick glm and get the coefficient. Didn't use our
+# actual model because we wanted it to be compared to 2023/24 instead of the full
+# trend. Poisson model is here because we played with that out of interest, but
+# it basically came to a similar number anyways. Going with 2.3% as our yearly change.
+
+EnglandAnnualFigures <- predictions_ENG_all %>%
+  mutate(year = as.numeric(format(date,'%Y'))) %>%
+  filter(date >= "2023-07-01" & date < "2029-07-01") %>%
+  mutate(year = case_when(date > "2023-06-01" & date < "2024-07-01"  ~ "2023/24",
+                          date > "2024-06-01" & date < "2025-07-01" ~ "2024/25",
+                          date > "2025-06-01" & date < "2026-07-01"  ~ "2025/26",
+                          date > "2026-06-01" & date < "2027-07-01"  ~ "2026/27",
+                          date > "2027-06-01" & date < "2028-07-01"  ~ "2027/28",
+                          date > "2028-06-01" & date < "2029-07-01"  ~ "2028/29")) %>%
+  group_by(year) %>%
+  mutate(count = coalesce(count, predicted_count_09)) %>%
+  summarise(count = sum(count))
+
+EnglandAnnualFigures <- EnglandAnnualFigures %>%
+  mutate(percent_inc = count / EnglandAnnualFigures[EnglandAnnualFigures$year == "2023/24",]$count * 100,
+         count_diff = count - lag(count, n = 1L),
+         perc_diff = percent_inc - lag(percent_inc, n = 1L),
+         yearno = row_number())
+
+YearInc <- glm(log(count) ~ yearno, gaussian(), data = EnglandAnnualFigures)
+#The annual %age increase
+coef <- (exp(YearInc$coef[2])-1)*100  
+
+
+EnglandAnnualFigures <- EnglandAnnualFigures %>%
+  mutate(increase = (coef / 100) * lag(count, n = 1L),
+         new_total = count+ increase)
+
+#average yearly increase in numbers
+CRUKRoundingPerYear(mean(EnglandAnnualFigures$increase, na.rm = TRUE))
+```
+
+```{r}
+predictions_ENG_summary <- predictions_ENG_all %>% 
+  filter(date > "2024-06-01" & date < "2029-07-01") %>% 
+  summarise(predicted_count_09 = sum(predicted_count_09),
+            predicted_count_19 = sum(predicted_count_19),
+            predicted_count_21 = sum(predicted_count_21),
+            predicted_count_precovid = sum(predicted_count_precovid))
+```
+
+```{r}
+plot_ly(predictions_ENG_all) %>%
+  add_trace(x = ~date, 
+            y = ~predicted_count_09,
+            name = paste0("2009 - ",
+                          CRUKRoundingPerYear(predictions_ENG_summary$predicted_count_09),
+                          " people"), 
+            line = list(color = "#ff0087", dash = 'dash'), 
+            type = 'scatter', 
+            mode = 'lines') %>%
+  add_trace(data = filter(predictions_ENG_all, date >= "2019-01-01"),
+            x = ~date, 
+            y = ~predicted_count_19,
+            name = paste0("2019 - ", 
+                          CRUKRoundingPerYear(predictions_ENG_summary$predicted_count_19), 
+                          " people"), 
+            line = list(color = "#009cee", dash = 'dash'), 
+            type = 'scatter', 
+            mode = 'lines') %>%
+  add_trace(data = filter(predictions_ENG_all, date >= "2021-01-01"), 
+            x = ~date, 
+            y = ~predicted_count_21,
+            name = paste0("2021 - ", 
+                          CRUKRoundingPerYear(predictions_ENG_summary$predicted_count_21), 
+                          " people"), 
+            line = list(color = "#00007e", dash = 'dash'), 
+            type = 'scatter', 
+            mode = 'lines') %>%
+  add_trace(data = filter(predictions_ENG_all, date >= "2009-01-01"), 
+            x = ~date, 
+            y = ~count,
+            name = paste0("Historical data"), 
+            line = list(color = "#000000"), 
+            type = 'scatter', 
+            mode = 'lines') %>%
+#eng_graph <- ggplotly(eng_graph) %>%
+  config(displaylogo = FALSE,
+         toImageButtonOptions = list(
+           format = "png",
+           filename = paste0("England 62 day models"),
+           width = 1400,
+           height = 600)) %>%
+  layout(
+    showlegend = TRUE, 
+    legend = list(
+      orientation = "h",
+      y = -0.1,
+      title = list(text = "Model starting year and predicted number of patients over next parliamentary term",
+                   font = list(family = "Poppins", color = "#000000", size = 18),
+                   side = "top"),
+      font =  list(family = "Poppins", color= "#000000", size= 14)
+    ),
+    yaxis = list(
+      title = "Number of people", 
+      showgrid = T, 
+      zeroline = T,
+      tickmode = 'auto',
+      tickformat = '~s',
+      nticks = 5,
+      range = c(0, 40000),
+      titlefont = list(family = "Poppins", color = "#000000", size = 18),
+      tickfont = list(family = "Poppins", color= "#000000", size= 14)),
+    xaxis = list(
+      title = "", 
+      range = c("2010-01-01", "2030-01-01"),
+      tickmode = 'auto',
+      nticks = 12,
+      showgrid = F, 
+      tickfont = list(family = "Poppins", color= "#000000", size= 14),
+      titlefont = list(family = "Poppins", color = "#000000", size = 18)),
+    title = list(text = "Number of people starting treatment on the 62-day pathway<br><sup>England</sup>", 
+                 font = list(family = "Progress Medium", 
+                             color = "#000000",size = 28),
+                 xref = 'container',
+                 xanchor = 'left',
+                 x = 0.01),
+    margin = list(t = 75, b = 10) #Set margin sizes with t, b, r, l. 
+  ) 
+```

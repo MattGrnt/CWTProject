@@ -1,0 +1,713 @@
+"Date","Country","RefRoute","Count","WithinTarget","OutsideTarget","PercentWithinTarget","Standard","StandardHit","AdditionalPatients","TargetLastMet","rank"
+Oct 2009,"England","Urgent Suspected Cancer",8025,6843,"1182",0.852710280373832,0.85,"was met",0,NA,"130th"
+Nov 2009,"England","Urgent Suspected Cancer",7913,6818,"1095",0.861620118791862,0.85,"was met",0,"Oct 2009","141st"
+Dec 2009,"England","Urgent Suspected Cancer",8147,7197,"950",0.883392659874801,0.85,"was met",0,"Nov 2009","172nd"
+Jan 2010,"England","Urgent Suspected Cancer",7365,6272,"1093",0.851595383570944,0.85,"was met",0,"Dec 2009","129th"
+Feb 2010,"England","Urgent Suspected Cancer",7431,6366,"1065",0.85668146951958,0.85,"was met",0,"Jan 2010","133rd"
+Mar 2010,"England","Urgent Suspected Cancer",9354,8295,"1059",0.886786401539448,0.85,"was met",0,"Feb 2010","175th"
+Apr 2010,"England","Urgent Suspected Cancer",8193,7169,"1024",0.875015256926645,0.85,"was met",0,"Mar 2010","159th"
+May 2010,"England","Urgent Suspected Cancer",7870,6874,"996",0.873443456162643,0.85,"was met",0,"Apr 2010","158th"
+Jun 2010,"England","Urgent Suspected Cancer",9121,8006,"1115",0.877754632167525,0.85,"was met",0,"May 2010","164th"
+Jul 2010,"England","Urgent Suspected Cancer",9148,8016,"1132",0.876257105378225,0.85,"was met",0,"Jun 2010","163rd"
+Aug 2010,"England","Urgent Suspected Cancer",8934,7771,"1163",0.869823147526304,0.85,"was met",0,"Jul 2010","150th"
+Sep 2010,"England","Urgent Suspected Cancer",9094,7862,"1232",0.864526061139213,0.85,"was met",0,"Aug 2010","143rd"
+Oct 2010,"England","Urgent Suspected Cancer",8529,7340,"1189",0.860593270019932,0.85,"was met",0,"Sep 2010","140th"
+Nov 2010,"England","Urgent Suspected Cancer",8874,7732,"1142",0.871309443317557,0.85,"was met",0,"Oct 2010","154th"
+Dec 2010,"England","Urgent Suspected Cancer",8292,7311,"981",0.881693198263386,0.85,"was met",0,"Nov 2010","170th"
+Jan 2011,"England","Urgent Suspected Cancer",7905,6653,"1252",0.841619228336496,0.85,"was NOT met",66.2499999999994,"Dec 2010","120th"
+Feb 2011,"England","Urgent Suspected Cancer",7812,6648,"1164",0.85099846390169,0.85,"was met",0,"Dec 2010","127th"
+Mar 2011,"England","Urgent Suspected Cancer",9826,8738,"1088",0.889273356401384,0.85,"was met",0,"Feb 2011","176th"
+Apr 2011,"England","Urgent Suspected Cancer",8281,7304,"977",0.882019079821278,0.85,"was met",0,"Mar 2011","171st"
+May 2011,"England","Urgent Suspected Cancer",9015,7745,"1270",0.859123682750971,0.85,"was met",0,"Apr 2011","138th"
+Jun 2011,"England","Urgent Suspected Cancer",9831,8430,"1401",0.857491608178212,0.85,"was met",0,"May 2011","136th"
+Jul 2011,"England","Urgent Suspected Cancer",9223,8025,"1198",0.87010734034479,0.85,"was met",0,"Jun 2011","151st"
+Aug 2011,"England","Urgent Suspected Cancer",9769,8554,"1215",0.875626983314566,0.85,"was met",0,"Jul 2011","162nd"
+Sep 2011,"England","Urgent Suspected Cancer",9537,8312,"1225",0.87155289923456,0.85,"was met",0,"Aug 2011","155th"
+Oct 2011,"England","Urgent Suspected Cancer",9150,7942,"1208",0.867978142076503,0.85,"was met",0,"Sep 2011","147th"
+Nov 2011,"England","Urgent Suspected Cancer",9871,8681,"1190",0.879444838415561,0.85,"was met",0,"Oct 2011","167th"
+Dec 2011,"England","Urgent Suspected Cancer",9168,8155,"1013",0.889506980802792,0.85,"was met",0,"Nov 2011","177th"
+Jan 2012,"England","Urgent Suspected Cancer",9218,7978,"1240",0.865480581471035,0.85,"was met",0,"Dec 2011","144th"
+Feb 2012,"England","Urgent Suspected Cancer",8839,7630,"1209",0.863219821246747,0.85,"was met",0,"Jan 2012","142nd"
+Mar 2012,"England","Urgent Suspected Cancer",9758,8643,"1115",0.885734781717565,0.85,"was met",0,"Feb 2012","174th"
+Apr 2012,"England","Urgent Suspected Cancer",9031,7957,"1074",0.88107629276935,0.85,"was met",0,"Mar 2012","169th"
+May 2012,"England","Urgent Suspected Cancer",10661,9308,"1353",0.873088828440109,0.85,"was met",0,"Apr 2012","156th"
+Jun 2012,"England","Urgent Suspected Cancer",8765,7605,"1160",0.867655447803765,0.85,"was met",0,"May 2012","146th"
+Jul 2012,"England","Urgent Suspected Cancer",10239,8917,"1322",0.870885828694208,0.85,"was met",0,"Jun 2012","152nd"
+Aug 2012,"England","Urgent Suspected Cancer",10170,8933,"1237",0.878367748279253,0.85,"was met",0,"Jul 2012","165th"
+Sep 2012,"England","Urgent Suspected Cancer",9452,8192,"1260",0.866694879390605,0.85,"was met",0,"Aug 2012","145th"
+Oct 2012,"England","Urgent Suspected Cancer",10534,9199,"1335",0.873267514714259,0.85,"was met",0,"Sep 2012","157th"
+Nov 2012,"England","Urgent Suspected Cancer",10359,9104,"1255",0.878849309778936,0.85,"was met",0,"Oct 2012","166th"
+Dec 2012,"England","Urgent Suspected Cancer",9173,8112,"1061",0.884334459827755,0.85,"was met",0,"Nov 2012","173rd"
+Jan 2013,"England","Urgent Suspected Cancer",9785,8381,"1404",0.856515074093,0.85,"was met",0,"Dec 2012","132nd"
+Feb 2013,"England","Urgent Suspected Cancer",8967,7664,"1303",0.854689416750307,0.85,"was met",0,"Jan 2013","131st"
+Mar 2013,"England","Urgent Suspected Cancer",9392,8260,"1132",0.879471890971039,0.85,"was met",0,"Feb 2013","168th"
+Apr 2013,"England","Urgent Suspected Cancer",9871,8600,"1271",0.871238982879141,0.85,"was met",0,"Mar 2013","153rd"
+May 2013,"England","Urgent Suspected Cancer",10135,8706,"1429",0.859003453379378,0.85,"was met",0,"Apr 2013","137th"
+Jun 2013,"England","Urgent Suspected Cancer",9634,8431,"1203",0.875129748806311,0.85,"was met",0,"May 2013","160th"
+Jul 2013,"England","Urgent Suspected Cancer",11075,9622,"1453",0.868803611738149,0.85,"was met",0,"Jun 2013","148th"
+Aug 2013,"England","Urgent Suspected Cancer",10151,8884,"1267",0.875184710865925,0.85,"was met",0,"Jul 2013","161st"
+Sep 2013,"England","Urgent Suspected Cancer",10419,8933,"1486",0.857375947787696,0.85,"was met",0,"Aug 2013","135th"
+Oct 2013,"England","Urgent Suspected Cancer",11230,9545,"1685",0.849955476402493,0.85,"was NOT met",0.499999999999323,"Sep 2013","125th"
+Nov 2013,"England","Urgent Suspected Cancer",10288,8754,"1534",0.850894245723173,0.85,"was met",0,"Sep 2013","126th"
+Dec 2013,"England","Urgent Suspected Cancer",10115,8788,"1327",0.868808699950568,0.85,"was met",0,"Nov 2013","149th"
+Jan 2014,"England","Urgent Suspected Cancer",10725,8959,"1766",0.835337995337995,0.85,"was NOT met",157.25,"Dec 2013","114th"
+Feb 2014,"England","Urgent Suspected Cancer",9482,7953,"1529",0.838747099767981,0.85,"was NOT met",106.7,"Dec 2013","115th"
+Mar 2014,"England","Urgent Suspected Cancer",10418,8929,"1489",0.857074294490305,0.85,"was met",0,"Dec 2013","134th"
+Apr 2014,"England","Urgent Suspected Cancer",10315,8872,"1443",0.860106640814348,0.85,"was met",0,"Mar 2014","139th"
+May 2014,"England","Urgent Suspected Cancer",10465,8728,"1737",0.834018155757286,0.85,"was NOT met",167.25,"Apr 2014","112th"
+Jun 2014,"England","Urgent Suspected Cancer",10700.5,8852,"1848.5",0.827251063034438,0.85,"was NOT met",243.425,"Apr 2014","105th"
+Jul 2014,"England","Urgent Suspected Cancer",11678,9830,"1848",0.841753724952903,0.85,"was NOT met",96.2999999999996,"Apr 2014","122nd"
+Aug 2014,"England","Urgent Suspected Cancer",10143,8531,"1612",0.841072660948437,0.85,"was NOT met",90.5499999999997,"Apr 2014","119th"
+Sep 2014,"England","Urgent Suspected Cancer",11049,9075,"1974",0.82134129785501,0.85,"was NOT met",316.649999999999,"Apr 2014","95th"
+Oct 2014,"England","Urgent Suspected Cancer",11093,9139,"1954",0.823852880194717,0.85,"was NOT met",290.05,"Apr 2014","100th"
+Nov 2014,"England","Urgent Suspected Cancer",10240,8596,"1644",0.839453125,0.85,"was NOT met",108,"Apr 2014","116th"
+Dec 2014,"England","Urgent Suspected Cancer",11198,9509,"1689",0.849169494552599,0.85,"was NOT met",9.29999999999936,"Apr 2014","124th"
+Jan 2015,"England","Urgent Suspected Cancer",10411,8459,"1952",0.812506003265777,0.85,"was NOT met",390.35,"Apr 2014","86th"
+Feb 2015,"England","Urgent Suspected Cancer",9781,7921,"1860",0.80983539515387,0.85,"was NOT met",392.85,"Apr 2014","77th"
+Mar 2015,"England","Urgent Suspected Cancer",11568,9723,"1845",0.840508298755187,0.85,"was NOT met",109.8,"Apr 2014","118th"
+Apr 2015,"England","Urgent Suspected Cancer",10870,9035,"1835",0.831186752529899,0.85,"was NOT met",204.5,"Apr 2014","111th"
+May 2015,"England","Urgent Suspected Cancer",10423,8462,"1961",0.81185839009882,0.85,"was NOT met",397.55,"Apr 2014","85th"
+Jun 2015,"England","Urgent Suspected Cancer",11977,9744,"2233",0.813559322033898,0.85,"was NOT met",436.449999999999,"Apr 2014","87th"
+Jul 2015,"England","Urgent Suspected Cancer",12175,9968,"2207",0.818726899383984,0.85,"was NOT met",380.75,"Apr 2014","93rd"
+Aug 2015,"England","Urgent Suspected Cancer",10953,9054,"1899",0.826622843056697,0.85,"was NOT met",256.05,"Apr 2014","104th"
+Sep 2015,"England","Urgent Suspected Cancer",11967,9757,"2210",0.81532547839893,0.85,"was NOT met",414.949999999999,"Apr 2014","91st"
+Oct 2015,"England","Urgent Suspected Cancer",11705,9577,"2128",0.818197351559163,0.85,"was NOT met",372.25,"Apr 2014","92nd"
+Nov 2015,"England","Urgent Suspected Cancer",11643,9717,"1926",0.83457871682556,0.85,"was NOT met",179.55,"Apr 2014","113th"
+Dec 2015,"England","Urgent Suspected Cancer",11464,9760,"1704",0.851360781577111,0.85,"was met",0,"Apr 2014","128th"
+Jan 2016,"England","Urgent Suspected Cancer",10724,8690,"2034",0.810331965684446,0.85,"was NOT met",425.4,"Dec 2015","80th"
+Feb 2016,"England","Urgent Suspected Cancer",10906,8836,"2070",0.810196222262974,0.85,"was NOT met",434.1,"Dec 2015","78th"
+Mar 2016,"England","Urgent Suspected Cancer",11434,9606,"1828",0.840125940178415,0.85,"was NOT met",112.9,"Dec 2015","117th"
+Apr 2016,"England","Urgent Suspected Cancer",11552.5,9566.5,"1986",0.828089158190868,0.85,"was NOT met",253.124999999999,"Dec 2015","107th"
+May 2016,"England","Urgent Suspected Cancer",11750,9570,"2180",0.814468085106383,0.85,"was NOT met",417.499999999999,"Dec 2015","90th"
+Jun 2016,"England","Urgent Suspected Cancer",12515,10345,"2170",0.826608070315621,0.85,"was NOT met",292.75,"Dec 2015","103rd"
+Jul 2016,"England","Urgent Suspected Cancer",11681,9606,"2075",0.822361099220957,0.85,"was NOT met",322.85,"Dec 2015","96th"
+Aug 2016,"England","Urgent Suspected Cancer",12368,10240,"2128",0.827943078913325,0.85,"was NOT met",272.799999999999,"Dec 2015","106th"
+Sep 2016,"England","Urgent Suspected Cancer",12081,9837,"2244",0.814253786938167,0.85,"was NOT met",431.849999999999,"Dec 2015","89th"
+Oct 2016,"England","Urgent Suspected Cancer",11825,9590,"2235",0.810993657505285,0.85,"was NOT met",461.25,"Dec 2015","83rd"
+Nov 2016,"England","Urgent Suspected Cancer",12808,10537,"2271",0.822688944409744,0.85,"was NOT met",349.799999999999,"Dec 2015","97th"
+Dec 2016,"England","Urgent Suspected Cancer",11420,9484,"1936",0.830472854640981,0.85,"was NOT met",223,"Dec 2015","110th"
+Jan 2017,"England","Urgent Suspected Cancer",11998,9561,"2437",0.7968828138023,0.85,"was NOT met",637.299999999999,"Dec 2015","72nd"
+Feb 2017,"England","Urgent Suspected Cancer",10975,8760,"2215",0.798177676537585,0.85,"was NOT met",568.75,"Dec 2015","74th"
+Mar 2017,"England","Urgent Suspected Cancer",13013,10805,"2208",0.830323522631215,0.85,"was NOT met",256.05,"Dec 2015","109th"
+Apr 2017,"England","Urgent Suspected Cancer",10819,8970,"1849",0.829096959053517,0.85,"was NOT met",226.149999999999,"Dec 2015","108th"
+May 2017,"England","Urgent Suspected Cancer",12599,10209,"2390",0.810302404952774,0.85,"was NOT met",500.149999999999,"Dec 2015","79th"
+Jun 2017,"England","Urgent Suspected Cancer",12918,10405,"2513",0.805465242297569,0.85,"was NOT met",575.299999999999,"Dec 2015","75th"
+Jul 2017,"England","Urgent Suspected Cancer",12534,10203,"2331",0.814025849688846,0.85,"was NOT met",450.899999999999,"Dec 2015","88th"
+Aug 2017,"England","Urgent Suspected Cancer",13105,10829,"2276",0.82632582983594,0.85,"was NOT met",310.25,"Dec 2015","102nd"
+Sep 2017,"England","Urgent Suspected Cancer",11978,9825,"2153",0.820253798630823,0.85,"was NOT met",356.3,"Dec 2015","94th"
+Oct 2017,"England","Urgent Suspected Cancer",12464,10263,"2201",0.823411424903723,0.85,"was NOT met",331.399999999999,"Dec 2015","99th"
+Nov 2017,"England","Urgent Suspected Cancer",13300,10970,"2330",0.824812030075188,0.85,"was NOT met",334.999999999999,"Dec 2015","101st"
+Dec 2017,"England","Urgent Suspected Cancer",11264,9480,"1784",0.841619318181818,0.85,"was NOT met",94.3999999999992,"Dec 2015","121st"
+Jan 2018,"England","Urgent Suspected Cancer",12646,10262,"2384",0.811481891507196,0.85,"was NOT met",487.1,"Dec 2015","84th"
+Feb 2018,"England","Urgent Suspected Cancer",11121,9004,"2117",0.809639420915385,0.85,"was NOT met",448.85,"Dec 2015","76th"
+Mar 2018,"England","Urgent Suspected Cancer",12308,10419,"1889",0.846522586935327,0.85,"was NOT met",42.7999999999991,"Dec 2015","123rd"
+Apr 2018,"England","ALL ROUTES",16733,13950,"2783",0.833681945855495,NA,NA,NA,NA,NA
+Apr 2018,"England","Consultant Upgrade",2660,2269,"391",0.853007518796992,NA,NA,NA,NA,NA
+Apr 2018,"England","Screening",1570,1387,"183",0.88343949044586,NA,NA,NA,NA,NA
+Apr 2018,"England","Urgent Suspected Cancer",12503,10294,"2209",0.82332240262337,0.85,"was NOT met",333.549999999999,"Dec 2015","98th"
+May 2018,"England","ALL ROUTES",19071,15698,"3373",0.823134602275707,NA,NA,NA,NA,NA
+May 2018,"England","Consultant Upgrade",2930,2486,"444",0.848464163822526,NA,NA,NA,NA,NA
+May 2018,"England","Screening",1747,1542,"205",0.882655981682885,NA,NA,NA,NA,NA
+May 2018,"England","Urgent Suspected Cancer",14394,11670,"2724",0.810754481033764,0.85,"was NOT met",564.9,"Dec 2015","82nd"
+Jun 2018,"England","ALL ROUTES",19096,15564,"3532",0.815039798910767,NA,NA,NA,NA,NA
+Jun 2018,"England","Consultant Upgrade",2922,2531,"391",0.866187542778919,NA,NA,NA,NA,NA
+Jun 2018,"England","Screening",1769,1581,"188",0.893725268513284,NA,NA,NA,NA,NA
+Jun 2018,"England","Urgent Suspected Cancer",14405,11452,"2953",0.795001735508504,0.85,"was NOT met",792.25,"Dec 2015","71st"
+Jul 2018,"England","ALL ROUTES",19841,16012,"3829",0.807015775414546,NA,NA,NA,NA,NA
+Jul 2018,"England","Consultant Upgrade",3231,2805,"426",0.868152274837512,NA,NA,NA,NA,NA
+Jul 2018,"England","Screening",1938,1725,"213",0.890092879256966,NA,NA,NA,NA,NA
+Jul 2018,"England","Urgent Suspected Cancer",14672,11482,"3190",0.782579062159215,0.85,"was NOT met",989.2,"Dec 2015","62nd"
+Aug 2018,"England","ALL ROUTES",19365,15763,"3602",0.813994319648851,NA,NA,NA,NA,NA
+Aug 2018,"England","Consultant Upgrade",2952,2553,"399",0.864837398373984,NA,NA,NA,NA,NA
+Aug 2018,"England","Screening",1976,1777,"199",0.899291497975709,NA,NA,NA,NA,NA
+Aug 2018,"England","Urgent Suspected Cancer",14437,11433,"3004",0.791923529819215,0.85,"was NOT met",838.449999999999,"Dec 2015","68th"
+Sep 2018,"England","ALL ROUTES",17708,14252,"3456",0.804833973345381,NA,NA,NA,NA,NA
+Sep 2018,"England","Consultant Upgrade",2852,2417,"435",0.847475455820477,NA,NA,NA,NA,NA
+Sep 2018,"England","Screening",1916,1705,"211",0.889874739039666,NA,NA,NA,NA,NA
+Sep 2018,"England","Urgent Suspected Cancer",12940,10130,"2810",0.782843894899536,0.85,"was NOT met",869,"Dec 2015","63rd"
+Oct 2018,"England","ALL ROUTES",19796,15907,"3889",0.803546170943625,NA,NA,NA,NA,NA
+Oct 2018,"England","Consultant Upgrade",3330,2797,"533",0.83993993993994,NA,NA,NA,NA,NA
+Oct 2018,"England","Screening",2088,1826,"262",0.874521072796935,NA,NA,NA,NA,NA
+Oct 2018,"England","Urgent Suspected Cancer",14378,11284,"3094",0.784810126582278,0.85,"was NOT met",937.3,"Dec 2015","64th"
+Nov 2018,"England","ALL ROUTES",19346,15745,"3601",0.813863330921121,NA,NA,NA,NA,NA
+Nov 2018,"England","Consultant Upgrade",3314,2837,"477",0.856065178032589,NA,NA,NA,NA,NA
+Nov 2018,"England","Screening",1973,1749,"224",0.886467308667005,NA,NA,NA,NA,NA
+Nov 2018,"England","Urgent Suspected Cancer",14059,11159,"2900",0.793726438580269,0.85,"was NOT met",791.15,"Dec 2015","69th"
+Dec 2018,"England","ALL ROUTES",16950,14007,"2943",0.826371681415929,NA,NA,NA,NA,NA
+Dec 2018,"England","Consultant Upgrade",2863,2462,"401",0.859937128885784,NA,NA,NA,NA,NA
+Dec 2018,"England","Screening",1666,1479,"187",0.887755102040816,NA,NA,NA,NA,NA
+Dec 2018,"England","Urgent Suspected Cancer",12421,10066,"2355",0.810401738990419,0.85,"was NOT met",491.85,"Dec 2015","81st"
+Jan 2019,"England","ALL ROUTES",19450,15252,"4198",0.784164524421594,NA,NA,NA,NA,NA
+Jan 2019,"England","Consultant Upgrade",3418,2860,"558",0.836746635459333,NA,NA,NA,NA,NA
+Jan 2019,"England","Screening",1932,1635,"297",0.846273291925466,NA,NA,NA,NA,NA
+Jan 2019,"England","Urgent Suspected Cancer",14100,10757,"3343",0.76290780141844,0.85,"was NOT met",1228,"Dec 2015","53rd"
+Feb 2019,"England","ALL ROUTES",16808,13135,"3673",0.781473108043789,NA,NA,NA,NA,NA
+Feb 2019,"England","Consultant Upgrade",2967,2460,"507",0.829120323559151,NA,NA,NA,NA,NA
+Feb 2019,"England","Screening",1494,1261,"233",0.844042838018742,NA,NA,NA,NA,NA
+Feb 2019,"England","Urgent Suspected Cancer",12347,9414,"2933",0.762452417591318,0.85,"was NOT met",1080.95,"Dec 2015","52nd"
+Mar 2019,"England","ALL ROUTES",18075,14737,"3338",0.815325034578147,NA,NA,NA,NA,NA
+Mar 2019,"England","Consultant Upgrade",3192,2716,"476",0.850877192982456,NA,NA,NA,NA,NA
+Mar 2019,"England","Screening",1607,1438,"169",0.894835096453018,NA,NA,NA,NA,NA
+Mar 2019,"England","Urgent Suspected Cancer",13276,10583,"2693",0.797152756854474,0.85,"was NOT met",701.599999999999,"Dec 2015","73rd"
+Apr 2019,"England","ALL ROUTES",18489,15014,"3475",0.812050408350911,NA,NA,NA,NA,NA
+Apr 2019,"England","Consultant Upgrade",3172,2665,"507",0.840163934426229,NA,NA,NA,NA,NA
+Apr 2019,"England","Screening",1798,1613,"185",0.897107897664071,NA,NA,NA,NA,NA
+Apr 2019,"England","Urgent Suspected Cancer",13519,10736,"2783",0.794141578519121,0.85,"was NOT met",755.149999999999,"Dec 2015","70th"
+May 2019,"England","ALL ROUTES",19054,15138,"3916",0.794478849585389,NA,NA,NA,NA,NA
+May 2019,"England","Consultant Upgrade",3253,2705,"548",0.831540116815247,NA,NA,NA,NA,NA
+May 2019,"England","Screening",1803,1577,"226",0.87465335551858,NA,NA,NA,NA,NA
+May 2019,"England","Urgent Suspected Cancer",13998,10856,"3142",0.775539362766109,0.85,"was NOT met",1042.3,"Dec 2015","58th"
+Jun 2019,"England","ALL ROUTES",18042,14128,"3914",0.783061744817648,NA,NA,NA,NA,NA
+Jun 2019,"England","Consultant Upgrade",3005,2443,"562",0.812978369384359,NA,NA,NA,NA,NA
+Jun 2019,"England","Screening",1713,1458,"255",0.851138353765324,NA,NA,NA,NA,NA
+Jun 2019,"England","Urgent Suspected Cancer",13324,10227,"3097",0.767562293605524,0.85,"was NOT met",1098.4,"Dec 2015","54th"
+Jul 2019,"England","ALL ROUTES",20461,16284,"4177",0.795855530032745,NA,NA,NA,NA,NA
+Jul 2019,"England","Consultant Upgrade",3641,3048,"593",0.837132655863774,NA,NA,NA,NA,NA
+Jul 2019,"England","Screening",1890,1621,"269",0.857671957671958,NA,NA,NA,NA,NA
+Jul 2019,"England","Urgent Suspected Cancer",14930,11615,"3315",0.777963831212324,0.85,"was NOT met",1075.5,"Dec 2015","59th"
+Aug 2019,"England","ALL ROUTES",18723,15052,"3671",0.803930993964642,NA,NA,NA,NA,NA
+Aug 2019,"England","Consultant Upgrade",3297,2749,"548",0.833788292387018,NA,NA,NA,NA,NA
+Aug 2019,"England","Screening",1775,1560,"215",0.87887323943662,NA,NA,NA,NA,NA
+Aug 2019,"England","Urgent Suspected Cancer",13651,10743,"2908",0.786975313163871,0.85,"was NOT met",860.349999999999,"Dec 2015","66th"
+Sep 2019,"England","ALL ROUTES",18728,14750,"3978",0.787590773173857,NA,NA,NA,NA,NA
+Sep 2019,"England","Consultant Upgrade",3283,2669,"614",0.812975936643314,NA,NA,NA,NA,NA
+Sep 2019,"England","Screening",1864,1621,"243",0.869635193133047,NA,NA,NA,NA,NA
+Sep 2019,"England","Urgent Suspected Cancer",13581,10460,"3121",0.77019365289743,0.85,"was NOT met",1083.85,"Dec 2015","55th"
+Oct 2019,"England","ALL ROUTES",20511,16149,"4362",0.787333625859295,NA,NA,NA,NA,NA
+Oct 2019,"England","Consultant Upgrade",3566,2939,"627",0.824172742568704,NA,NA,NA,NA,NA
+Oct 2019,"England","Screening",2010,1674,"336",0.832835820895522,NA,NA,NA,NA,NA
+Oct 2019,"England","Urgent Suspected Cancer",14935,11536,"3399",0.772413793103448,0.85,"was NOT met",1158.75,"Dec 2015","56th"
+Nov 2019,"England","ALL ROUTES",19002,15001,"4001",0.789443216503526,NA,NA,NA,NA,NA
+Nov 2019,"England","Consultant Upgrade",3381,2769,"612",0.818988464951198,NA,NA,NA,NA,NA
+Nov 2019,"England","Screening",1885,1581,"304",0.838726790450928,NA,NA,NA,NA,NA
+Nov 2019,"England","Urgent Suspected Cancer",13736,10651,"3085",0.775407687827606,0.85,"was NOT met",1024.6,"Dec 2015","57th"
+Dec 2019,"England","ALL ROUTES",17976,14319,"3657",0.796562082777036,NA,NA,NA,NA,NA
+Dec 2019,"England","Consultant Upgrade",3166,2624,"542",0.828806064434618,NA,NA,NA,NA,NA
+Dec 2019,"England","Screening",1803,1533,"270",0.850249584026622,NA,NA,NA,NA,NA
+Dec 2019,"England","Urgent Suspected Cancer",13007,10162,"2845",0.781271622972246,0.85,"was NOT met",893.95,"Dec 2015","61st"
+Jan 2020,"England","ALL ROUTES",20024,15125,"4899",0.755343587694766,NA,NA,NA,NA,NA
+Jan 2020,"England","Consultant Upgrade",3834,3097,"737",0.807772561293688,NA,NA,NA,NA,NA
+Jan 2020,"England","Screening",2057,1622,"435",0.78852698104035,NA,NA,NA,NA,NA
+Jan 2020,"England","Urgent Suspected Cancer",14133,10406,"3727",0.736290950258261,0.85,"was NOT met",1607.05,"Dec 2015","42nd"
+Feb 2020,"England","ALL ROUTES",17740,13356,"4384",0.752874859075536,NA,NA,NA,NA,NA
+Feb 2020,"England","Consultant Upgrade",3368,2685,"683",0.797209026128266,NA,NA,NA,NA,NA
+Feb 2020,"England","Screening",1612,1227,"385",0.761166253101737,NA,NA,NA,NA,NA
+Feb 2020,"England","Urgent Suspected Cancer",12760,9444,"3316",0.74012539184953,0.85,"was NOT met",1402,"Dec 2015","44th"
+Mar 2020,"England","ALL ROUTES",21567,17290,"4277",0.80168776371308,NA,NA,NA,NA,NA
+Mar 2020,"England","Consultant Upgrade",3743,3108,"635",0.830349986641731,NA,NA,NA,NA,NA
+Mar 2020,"England","Screening",2297,1948,"349",0.848062690465825,NA,NA,NA,NA,NA
+Mar 2020,"England","Urgent Suspected Cancer",15527,12234,"3293",0.787917820570619,0.85,"was NOT met",963.95,"Dec 2015","67th"
+Apr 2020,"England","ALL ROUTES",15264,11643,"3621",0.762775157232704,NA,NA,NA,NA,NA
+Apr 2020,"England","Consultant Upgrade",2888,2342,"546",0.810941828254848,NA,NA,NA,NA,NA
+Apr 2020,"England","Screening",1383,1124,"259",0.812725958062184,NA,NA,NA,NA,NA
+Apr 2020,"England","Urgent Suspected Cancer",10993,8177,"2816",0.743836987173656,0.85,"was NOT met",1167.05,"Dec 2015","47th"
+May 2020,"England","ALL ROUTES",11919,8437,"3482",0.707861397768269,NA,NA,NA,NA,NA
+May 2020,"England","Consultant Upgrade",2701,2113,"588",0.782302850796001,NA,NA,NA,NA,NA
+May 2020,"England","Screening",564,270,"294",0.478723404255319,NA,NA,NA,NA,NA
+May 2020,"England","Urgent Suspected Cancer",8654,6054,"2600",0.69956089669517,0.85,"was NOT met",1301.9,"Dec 2015","36th"
+Jun 2020,"England","ALL ROUTES",13357,10042,"3315",0.751815527438796,NA,NA,NA,NA,NA
+Jun 2020,"England","Consultant Upgrade",2981,2453,"528",0.822878228782288,NA,NA,NA,NA,NA
+Jun 2020,"England","Screening",377,50,"327",0.13262599469496,NA,NA,NA,NA,NA
+Jun 2020,"England","Urgent Suspected Cancer",9999,7539,"2460",0.753975397539754,0.85,"was NOT met",960.15,"Dec 2015","49th"
+Jul 2020,"England","ALL ROUTES",15524,12251,"3273",0.789165163617624,NA,NA,NA,NA,NA
+Jul 2020,"England","Consultant Upgrade",3304,2821,"483",0.853813559322034,NA,NA,NA,NA,NA
+Jul 2020,"England","Screening",323,84,"239",0.260061919504644,NA,NA,NA,NA,NA
+Jul 2020,"England","Urgent Suspected Cancer",11897,9346,"2551",0.785576195679583,0.85,"was NOT met",766.45,"Dec 2015","65th"
+Aug 2020,"England","ALL ROUTES",14670,11629,"3041",0.792706203135651,NA,NA,NA,NA,NA
+Aug 2020,"England","Consultant Upgrade",2990,2594,"396",0.867558528428094,NA,NA,NA,NA,NA
+Aug 2020,"England","Screening",324,181,"143",0.558641975308642,NA,NA,NA,NA,NA
+Aug 2020,"England","Urgent Suspected Cancer",11356,8854,"2502",0.779675942233181,0.85,"was NOT met",798.6,"Dec 2015","60th"
+Sep 2020,"England","ALL ROUTES",18113,13889,"4224",0.766797327886049,NA,NA,NA,NA,NA
+Sep 2020,"England","Consultant Upgrade",3608,3033,"575",0.840631929046563,NA,NA,NA,NA,NA
+Sep 2020,"England","Screening",728,614,"114",0.843406593406593,NA,NA,NA,NA,NA
+Sep 2020,"England","Urgent Suspected Cancer",13777,10242,"3535",0.743412934601147,0.85,"was NOT met",1468.45,"Dec 2015","45th"
+Oct 2020,"England","ALL ROUTES",18833,14438,"4395",0.766633037752881,NA,NA,NA,NA,NA
+Oct 2020,"England","Consultant Upgrade",3765,3119,"646",0.828419654714475,NA,NA,NA,NA,NA
+Oct 2020,"England","Screening",1078,917,"161",0.850649350649351,NA,NA,NA,NA,NA
+Oct 2020,"England","Urgent Suspected Cancer",13990,10402,"3588",0.743531093638313,0.85,"was NOT met",1489.5,"Dec 2015","46th"
+Nov 2020,"England","ALL ROUTES",18788,14643,"4145",0.779380455609964,NA,NA,NA,NA,NA
+Nov 2020,"England","Consultant Upgrade",3685,3064,"621",0.831478968792402,NA,NA,NA,NA,NA
+Nov 2020,"England","Screening",1356,1194,"162",0.880530973451327,NA,NA,NA,NA,NA
+Nov 2020,"England","Urgent Suspected Cancer",13747,10385,"3362",0.755437550010912,0.85,"was NOT met",1299.95,"Dec 2015","51st"
+Dec 2020,"England","ALL ROUTES",19329,14983,"4346",0.775156500594961,NA,NA,NA,NA,NA
+Dec 2020,"England","Consultant Upgrade",3624,3028,"596",0.835540838852097,NA,NA,NA,NA,NA
+Dec 2020,"England","Screening",1591,1334,"257",0.838466373350094,NA,NA,NA,NA,NA
+Dec 2020,"England","Urgent Suspected Cancer",14114,10621,"3493",0.752515233101885,0.85,"was NOT met",1375.9,"Dec 2015","48th"
+Jan 2021,"England","ALL ROUTES",17464,12936,"4528",0.74072377462208,NA,NA,NA,NA,NA
+Jan 2021,"England","Consultant Upgrade",3357,2727,"630",0.812332439678284,NA,NA,NA,NA,NA
+Jan 2021,"England","Screening",1471,1178,"293",0.800815771583956,NA,NA,NA,NA,NA
+Jan 2021,"England","Urgent Suspected Cancer",12636,9031,"3605",0.714704020259576,0.85,"was NOT met",1709.6,"Dec 2015","38th"
+Feb 2021,"England","ALL ROUTES",17397,12504,"4893",0.718744611139852,NA,NA,NA,NA,NA
+Feb 2021,"England","Consultant Upgrade",3552,2797,"755",0.787443693693694,NA,NA,NA,NA,NA
+Feb 2021,"England","Screening",1480,1069,"411",0.722297297297297,NA,NA,NA,NA,NA
+Feb 2021,"England","Urgent Suspected Cancer",12365,8638,"3727",0.698584714921148,0.85,"was NOT met",1872.25,"Dec 2015","35th"
+Mar 2021,"England","ALL ROUTES",20777,15737,"5040",0.757424074697983,NA,NA,NA,NA,NA
+Mar 2021,"England","Consultant Upgrade",4214,3470,"744",0.8234456573327,NA,NA,NA,NA,NA
+Mar 2021,"England","Screening",1811,1359,"452",0.750414135836554,NA,NA,NA,NA,NA
+Mar 2021,"England","Urgent Suspected Cancer",14752,10908,"3844",0.739425162689805,0.85,"was NOT met",1631.2,"Dec 2015","43rd"
+Apr 2021,"England","ALL ROUTES",19190,14775,"4415",0.769932256383533,NA,NA,NA,NA,NA
+Apr 2021,"England","Consultant Upgrade",3971,3308,"663",0.833039536640645,NA,NA,NA,NA,NA
+Apr 2021,"England","Screening",1841,1368,"473",0.743074416078218,NA,NA,NA,NA,NA
+Apr 2021,"England","Urgent Suspected Cancer",13378,10099,"3279",0.754896098071461,0.85,"was NOT met",1272.3,"Dec 2015","50th"
+May 2021,"England","ALL ROUTES",19228,14526,"4702",0.755460786353235,NA,NA,NA,NA,NA
+May 2021,"England","Consultant Upgrade",4103,3440,"663",0.838410918839873,NA,NA,NA,NA,NA
+May 2021,"England","Screening",1862,1389,"473",0.745972073039742,NA,NA,NA,NA,NA
+May 2021,"England","Urgent Suspected Cancer",13263,9697,"3566",0.731131719822061,0.85,"was NOT met",1576.55,"Dec 2015","40th"
+Jun 2021,"England","ALL ROUTES",21320,16071,"5249",0.753799249530957,NA,NA,NA,NA,NA
+Jun 2021,"England","Consultant Upgrade",4541,3742,"799",0.824047566615283,NA,NA,NA,NA,NA
+Jun 2021,"England","Screening",2190,1603,"587",0.731963470319635,NA,NA,NA,NA,NA
+Jun 2021,"England","Urgent Suspected Cancer",14589,10726,"3863",0.735211460689561,0.85,"was NOT met",1674.65,"Dec 2015","41st"
+Jul 2021,"England","ALL ROUTES",21157,15830,"5327",0.748215720565298,NA,NA,NA,NA,NA
+Jul 2021,"England","Consultant Upgrade",4437,3641,"796",0.820599504169484,NA,NA,NA,NA,NA
+Jul 2021,"England","Screening",2075,1586,"489",0.76433734939759,NA,NA,NA,NA,NA
+Jul 2021,"England","Urgent Suspected Cancer",14645,10603,"4042",0.724001365653807,0.85,"was NOT met",1845.25,"Dec 2015","39th"
+Aug 2021,"England","ALL ROUTES",20214,14816,"5398",0.732957356287721,NA,NA,NA,NA,NA
+Aug 2021,"England","Consultant Upgrade",4148,3350,"798",0.807618129218901,NA,NA,NA,NA,NA
+Aug 2021,"England","Screening",1956,1458,"498",0.745398773006135,NA,NA,NA,NA,NA
+Aug 2021,"England","Urgent Suspected Cancer",14110,10008,"4102",0.709284195605953,0.85,"was NOT met",1985.5,"Dec 2015","37th"
+Sep 2021,"England","ALL ROUTES",21281,14998,"6283",0.704760114656266,NA,NA,NA,NA,NA
+Sep 2021,"England","Consultant Upgrade",4229,3309,"920",0.782454480964767,NA,NA,NA,NA,NA
+Sep 2021,"England","Screening",2026,1439,"587",0.710266535044422,NA,NA,NA,NA,NA
+Sep 2021,"England","Urgent Suspected Cancer",15026,10250,"4776",0.682150938373486,0.85,"was NOT met",2522.1,"Dec 2015","33rd"
+Oct 2021,"England","ALL ROUTES",20067,14111,"5956",0.703194299098022,NA,NA,NA,NA,NA
+Oct 2021,"England","Consultant Upgrade",4137,3170,"967",0.76625574087503,NA,NA,NA,NA,NA
+Oct 2021,"England","Screening",1995,1464,"531",0.733834586466165,NA,NA,NA,NA,NA
+Oct 2021,"England","Urgent Suspected Cancer",13935,9477,"4458",0.680086114101184,0.85,"was NOT met",2367.75,"Dec 2015","32nd"
+Nov 2021,"England","ALL ROUTES",21716,15293,"6423",0.704227297844907,NA,NA,NA,NA,NA
+Nov 2021,"England","Consultant Upgrade",4395,3468,"927",0.789078498293515,NA,NA,NA,NA,NA
+Nov 2021,"England","Screening",2197,1601,"596",0.728720983158853,NA,NA,NA,NA,NA
+Nov 2021,"England","Urgent Suspected Cancer",15124,10224,"4900",0.676011637133034,0.85,"was NOT met",2631.4,"Dec 2015","31st"
+Dec 2021,"England","ALL ROUTES",20579,14491,"6088",0.704164439477137,NA,NA,NA,NA,NA
+Dec 2021,"England","Consultant Upgrade",4180,3308,"872",0.791387559808612,NA,NA,NA,NA,NA
+Dec 2021,"England","Screening",2028,1542,"486",0.760355029585799,NA,NA,NA,NA,NA
+Dec 2021,"England","Urgent Suspected Cancer",14371,9641,"4730",0.670864936330109,0.85,"was NOT met",2574.35,"Dec 2015","28th"
+Jan 2022,"England","ALL ROUTES",20096,13130,"6966",0.653363853503185,NA,NA,NA,NA,NA
+Jan 2022,"England","Consultant Upgrade",4134,3145,"989",0.760764392839865,NA,NA,NA,NA,NA
+Jan 2022,"England","Screening",2170,1422,"748",0.655299539170507,NA,NA,NA,NA,NA
+Jan 2022,"England","Urgent Suspected Cancer",13792,8563,"5229",0.62086716937355,0.85,"was NOT met",3160.2,"Dec 2015","14th"
+Feb 2022,"England","ALL ROUTES",19474,12741,"6733",0.654256957995276,NA,NA,NA,NA,NA
+Feb 2022,"England","Consultant Upgrade",4044,3078,"966",0.761127596439169,NA,NA,NA,NA,NA
+Feb 2022,"England","Screening",1871,1206,"665",0.64457509353287,NA,NA,NA,NA,NA
+Feb 2022,"England","Urgent Suspected Cancer",13559,8457,"5102",0.623718563315879,0.85,"was NOT met",3068.15,"Dec 2015","16th"
+Mar 2022,"England","ALL ROUTES",22303,15657,"6646",0.702013182083128,NA,NA,NA,NA,NA
+Mar 2022,"England","Consultant Upgrade",4570,3530,"1040",0.772428884026258,NA,NA,NA,NA,NA
+Mar 2022,"England","Screening",2130,1589,"541",0.746009389671362,NA,NA,NA,NA,NA
+Mar 2022,"England","Urgent Suspected Cancer",15603,10538,"5065",0.675382939178363,0.85,"was NOT met",2724.55,"Dec 2015","30th"
+Apr 2022,"England","ALL ROUTES",19346,13352,"5994",0.690168510286364,NA,NA,NA,NA,NA
+Apr 2022,"England","Consultant Upgrade",3980,3125,"855",0.785175879396985,NA,NA,NA,NA,NA
+Apr 2022,"England","Screening",1773,1293,"480",0.72927241962775,NA,NA,NA,NA,NA
+Apr 2022,"England","Urgent Suspected Cancer",13593,8934,"4659",0.657250055175458,0.85,"was NOT met",2620.05,"Dec 2015","24th"
+May 2022,"England","ALL ROUTES",22563,14767,"7796",0.654478571111997,NA,NA,NA,NA,NA
+May 2022,"England","Consultant Upgrade",4753,3604,"1149",0.758257942352199,NA,NA,NA,NA,NA
+May 2022,"England","Screening",1980,1364,"616",0.688888888888889,NA,NA,NA,NA,NA
+May 2022,"England","Urgent Suspected Cancer",15830,9799,"6031",0.619014529374605,0.85,"was NOT met",3656.5,"Dec 2015","11th"
+Jun 2022,"England","ALL ROUTES",20997,13441,"7556",0.640139067485831,NA,NA,NA,NA,NA
+Jun 2022,"England","Consultant Upgrade",4517,3376,"1141",0.747398715961922,NA,NA,NA,NA,NA
+Jun 2022,"England","Screening",1895,1276,"619",0.67335092348285,NA,NA,NA,NA,NA
+Jun 2022,"England","Urgent Suspected Cancer",14585,8789,"5796",0.602605416523826,0.85,"was NOT met",3608.25,"Dec 2015","6th"
+Jul 2022,"England","ALL ROUTES",21148,13888,"7260",0.656705125780216,NA,NA,NA,NA,NA
+Jul 2022,"England","Consultant Upgrade",4693,3518,"1175",0.749627104197741,NA,NA,NA,NA,NA
+Jul 2022,"England","Screening",1940,1365,"575",0.70360824742268,NA,NA,NA,NA,NA
+Jul 2022,"England","Urgent Suspected Cancer",14515,9005,"5510",0.620392697209783,0.85,"was NOT met",3332.75,"Dec 2015","13th"
+Aug 2022,"England","ALL ROUTES",22460,14658,"7802",0.652626892252894,NA,NA,NA,NA,NA
+Aug 2022,"England","Consultant Upgrade",4982,3652,"1330",0.733038940184665,NA,NA,NA,NA,NA
+Aug 2022,"England","Screening",1924,1322,"602",0.687110187110187,NA,NA,NA,NA,NA
+Aug 2022,"England","Urgent Suspected Cancer",15554,9684,"5870",0.622605117654623,0.85,"was NOT met",3536.9,"Dec 2015","15th"
+Sep 2022,"England","ALL ROUTES",22003,14125,"7878",0.641957914829796,NA,NA,NA,NA,NA
+Sep 2022,"England","Consultant Upgrade",4809,3551,"1258",0.738407153254315,NA,NA,NA,NA,NA
+Sep 2022,"England","Screening",1808,1226,"582",0.678097345132743,NA,NA,NA,NA,NA
+Sep 2022,"England","Urgent Suspected Cancer",15386,9348,"6038",0.607565319121279,0.85,"was NOT met",3730.1,"Dec 2015","8th"
+Oct 2022,"England","ALL ROUTES",22236,14242,"7994",0.640492894405469,NA,NA,NA,NA,NA
+Oct 2022,"England","Consultant Upgrade",4967,3705,"1262",0.745923092409905,NA,NA,NA,NA,NA
+Oct 2022,"England","Screening",1822,1227,"595",0.673435784851811,NA,NA,NA,NA,NA
+Oct 2022,"England","Urgent Suspected Cancer",15447,9310,"6137",0.602706027060271,0.85,"was NOT met",3819.95,"Dec 2015","7th"
+Nov 2022,"England","ALL ROUTES",24042,15638,"8404",0.650445054487979,NA,NA,NA,NA,NA
+Nov 2022,"England","Consultant Upgrade",5170,3905,"1265",0.75531914893617,NA,NA,NA,NA,NA
+Nov 2022,"England","Screening",2133,1435,"698",0.672761368963901,NA,NA,NA,NA,NA
+Nov 2022,"England","Urgent Suspected Cancer",16739,10298,"6441",0.615209988649262,0.85,"was NOT met",3930.15,"Dec 2015","10th"
+Dec 2022,"England","ALL ROUTES",20709,13738,"6971",0.663383070162731,NA,NA,NA,NA,NA
+Dec 2022,"England","Consultant Upgrade",4497,3485,"1012",0.77496108516789,NA,NA,NA,NA,NA
+Dec 2022,"England","Screening",1824,1329,"495",0.728618421052632,NA,NA,NA,NA,NA
+Dec 2022,"England","Urgent Suspected Cancer",14388,8924,"5464",0.620239088128996,0.85,"was NOT met",3305.8,"Dec 2015","12th"
+Jan 2023,"England","ALL ROUTES",22739,13481,"9258",0.592858085228022,NA,NA,NA,NA,NA
+Jan 2023,"England","Consultant Upgrade",5041,3614,"1427",0.716921245784567,NA,NA,NA,NA,NA
+Jan 2023,"England","Screening",2032,1291,"741",0.635334645669291,NA,NA,NA,NA,NA
+Jan 2023,"England","Urgent Suspected Cancer",15666,8576,"7090",0.547427550108515,0.85,"was NOT met",4740.1,"Dec 2015",""
+Feb 2023,"England","ALL ROUTES",20907,13053,"7854",0.624336346678146,NA,NA,NA,NA,NA
+Feb 2023,"England","Consultant Upgrade",4864,3581,"1283",0.736225328947368,NA,NA,NA,NA,NA
+Feb 2023,"England","Screening",1711,1097,"614",0.64114552893045,NA,NA,NA,NA,NA
+Feb 2023,"England","Urgent Suspected Cancer",14332,8375,"5957",0.58435668434273,0.85,"was NOT met",3807.2,"Dec 2015","2nd"
+Mar 2023,"England","ALL ROUTES",23954,16164,"7790",0.674793353928363,NA,NA,NA,NA,NA
+Mar 2023,"England","Consultant Upgrade",5543,4254,"1289",0.767454447050334,NA,NA,NA,NA,NA
+Mar 2023,"England","Screening",1992,1427,"565",0.71636546184739,NA,NA,NA,NA,NA
+Mar 2023,"England","Urgent Suspected Cancer",16419,10483,"5936",0.638467628966441,0.85,"was NOT met",3473.15,"Dec 2015","21st"
+Apr 2023,"England","ALL ROUTES",19903,12938,"6965",0.65005275586595,NA,NA,NA,NA,NA
+Apr 2023,"England","Consultant Upgrade",4601,3439,"1162",0.747446207346229,NA,NA,NA,NA,NA
+Apr 2023,"England","Screening",1674,1135,"539",0.678016726403823,NA,NA,NA,NA,NA
+Apr 2023,"England","Urgent Suspected Cancer",13628,8364,"5264",0.613736425007338,0.85,"was NOT met",3219.8,"Dec 2015","9th"
+May 2023,"England","ALL ROUTES",23351,14645,"8706",0.627168001370391,NA,NA,NA,NA,NA
+May 2023,"England","Consultant Upgrade",5592,4104,"1488",0.733905579399142,NA,NA,NA,NA,NA
+May 2023,"England","Screening",1891,1171,"720",0.619249074563723,NA,NA,NA,NA,NA
+May 2023,"England","Urgent Suspected Cancer",15868,9370,"6498",0.590496596924628,0.85,"was NOT met",4117.8,"Dec 2015","3rd"
+Jun 2023,"England","ALL ROUTES",24059,15169,"8890",0.630491707884783,NA,NA,NA,NA,NA
+Jun 2023,"England","Consultant Upgrade",5862,4283,"1579",0.730638007505971,NA,NA,NA,NA,NA
+Jun 2023,"England","Screening",1879,1171,"708",0.623203831825439,NA,NA,NA,NA,NA
+Jun 2023,"England","Urgent Suspected Cancer",16318,9715,"6603",0.595354822894963,0.85,"was NOT met",4155.3,"Dec 2015","4th"
+Jul 2023,"England","ALL ROUTES",23040,15113,"7927",0.655946180555556,NA,NA,NA,NA,NA
+Jul 2023,"England","Consultant Upgrade",5647,4151,"1496",0.735080573755977,NA,NA,NA,NA,NA
+Jul 2023,"England","Screening",1614,1027,"587",0.636307311028501,NA,NA,NA,NA,NA
+Jul 2023,"England","Urgent Suspected Cancer",15779,9935,"5844",0.629634324101654,0.85,"was NOT met",3477.15,"Dec 2015","19th"
+Aug 2023,"England","ALL ROUTES",23865,15727,"8138",0.658998533417138,NA,NA,NA,NA,NA
+Aug 2023,"England","Consultant Upgrade",5761,4294,"1467",0.745356708904704,NA,NA,NA,NA,NA
+Aug 2023,"England","Screening",1770,1152,"618",0.650847457627119,NA,NA,NA,NA,NA
+Aug 2023,"England","Urgent Suspected Cancer",16334,10281,"6053",0.629423288845353,0.85,"was NOT met",3602.9,"Dec 2015","18th"
+Sep 2023,"England","ALL ROUTES",23143,14704.5,"8438",0.635389435022145,NA,NA,NA,NA,NA
+Sep 2023,"England","Consultant Upgrade",5741,4248.5,"1492",0.7400923264524,NA,NA,NA,NA,NA
+Sep 2023,"England","Screening",1722,1116,"606",0.64808362369338,NA,NA,NA,NA,NA
+Sep 2023,"England","Urgent Suspected Cancer",15680,9340,"6340",0.595663265306122,0.85,"was NOT met",3988,"Dec 2015","5th"
+Oct 2023,"England","ALL ROUTES",25017,15812.5,"9204",0.632082825335279,0.85,"was NOT met",5451.63395858732,"Dec 2015","20th"
+Oct 2023,"England","Breast Symptomatic",121,80,"41",0.661157024793388,NA,NA,NA,NA,NA
+Oct 2023,"England","Consultant Upgrade",6752,5093.5,"1658",0.754424942605347,NA,NA,NA,NA,NA
+Oct 2023,"England","Screening",1755,1077,"678",0.613675213675214,NA,NA,NA,NA,NA
+Oct 2023,"England","Urgent Suspected Cancer",16389,9562,"6827",0.583440112270425,NA,NA,NA,NA,NA
+Nov 2023,"England","ALL ROUTES",26939,17645,"9294",0.654998329559375,0.85,"was NOT met",5253.15,"Dec 2015","23rd"
+Nov 2023,"England","Breast Symptomatic",121,75,"46",0.619834710743802,NA,NA,NA,NA,NA
+Nov 2023,"England","Consultant Upgrade",7530,5910,"1620",0.784860557768924,NA,NA,NA,NA,NA
+Nov 2023,"England","Screening",1955,1266,"689",0.647570332480818,NA,NA,NA,NA,NA
+Nov 2023,"England","Urgent Suspected Cancer",17333,10394,"6939",0.59966537818035,NA,NA,NA,NA,NA
+Dec 2023,"England","ALL ROUTES",22975,15219,"7756",0.662415669205658,0.85,"was NOT met",4309.75000000001,"Dec 2015","26th"
+Dec 2023,"England","Breast Symptomatic",120,80,"40",0.666666666666667,NA,NA,NA,NA,NA
+Dec 2023,"England","Consultant Upgrade",6600,5208,"1392",0.789090909090909,NA,NA,NA,NA,NA
+Dec 2023,"England","Screening",1657,1135,"522",0.684972842486421,NA,NA,NA,NA,NA
+Dec 2023,"England","Urgent Suspected Cancer",14598,8796,"5802",0.602548294286889,NA,NA,NA,NA,NA
+Jan 2024,"England","ALL ROUTES",27244,17077,"10167",0.626816913815886,0.85,"was NOT met",6080.4,"Dec 2015","17th"
+Jan 2024,"England","Breast Symptomatic",114,71,"43",0.62280701754386,NA,NA,NA,NA,NA
+Jan 2024,"England","Consultant Upgrade",8201,6191,"2010",0.754907938056335,NA,NA,NA,NA,NA
+Jan 2024,"England","Screening",1929,1220,"709",0.632452047693105,NA,NA,NA,NA,NA
+Jan 2024,"England","Urgent Suspected Cancer",17000,9595,"7405",0.564411764705882,NA,NA,NA,NA,NA
+Feb 2024,"England","ALL ROUTES",25726,16518,"9208",0.64207416621317,0.85,"was NOT met",5349.09999999999,"Dec 2015","22nd"
+Feb 2024,"England","Breast Symptomatic",113,75,"38",0.663716814159292,NA,NA,NA,NA,NA
+Feb 2024,"England","Consultant Upgrade",8001,6077,"1924",0.759530058742657,NA,NA,NA,NA,NA
+Feb 2024,"England","Screening",1734,1056,"678",0.608996539792388,NA,NA,NA,NA,NA
+Feb 2024,"England","Urgent Suspected Cancer",15878,9310,"6568",0.586345887391359,NA,NA,NA,NA,NA
+Mar 2024,"England","ALL ROUTES",25748,17739,"8009",0.688946714307907,0.85,"was NOT met",4146.80000000001,"Dec 2015","34th"
+Mar 2024,"England","Breast Symptomatic",111,84,"27",0.756756756756757,NA,NA,NA,NA,NA
+Mar 2024,"England","Consultant Upgrade",7899,6115,"1784",0.774148626408406,NA,NA,NA,NA,NA
+Mar 2024,"England","Screening",1676,1201,"475",0.716587112171838,NA,NA,NA,NA,NA
+Mar 2024,"England","Urgent Suspected Cancer",16062,10339,"5723",0.64369318889304,NA,NA,NA,NA,NA
+Apr 2024,"England","ALL ROUTES",26455,17627,"8828",0.666301266301266,0.85,"was NOT met",4859.75000000001,"Dec 2015","27th"
+Apr 2024,"England","Breast Symptomatic",117,83,"34",0.709401709401709,NA,NA,NA,NA,NA
+Apr 2024,"England","Consultant Upgrade",8419,6466,"1953",0.768024706022093,NA,NA,NA,NA,NA
+Apr 2024,"England","Screening",1831,1216,"615",0.664117968323321,NA,NA,NA,NA,NA
+Apr 2024,"England","Urgent Suspected Cancer",16088,9862,"6226",0.613003480855296,NA,NA,NA,NA,NA
+May 2024,"England","ALL ROUTES",27321,17974,"9347",0.657882215145859,0.85,"was NOT met",5248.84999999999,"Dec 2015","25th"
+May 2024,"England","Breast Symptomatic",132,88,"44",0.666666666666667,NA,NA,NA,NA,NA
+May 2024,"England","Consultant Upgrade",8788,6711,"2077",0.763654984069185,NA,NA,NA,NA,NA
+May 2024,"England","Screening",1952,1329,"623",0.680840163934426,NA,NA,NA,NA,NA
+May 2024,"England","Urgent Suspected Cancer",16449,9846,"6603",0.598577421119825,NA,NA,NA,NA,NA
+Jun 2024,"England","ALL ROUTES",25758,17373,"8385",0.674470067551829,0.85,"was NOT met",4521.29999999999,"Dec 2015","29th"
+Jun 2024,"England","Breast Symptomatic",117,75,"42",0.641025641025641,NA,NA,NA,NA,NA
+Jun 2024,"England","Consultant Upgrade",8200,6403,"1797",0.780853658536585,NA,NA,NA,NA,NA
+Jun 2024,"England","Screening",1888,1287,"601",0.681673728813559,NA,NA,NA,NA,NA
+Jun 2024,"England","Urgent Suspected Cancer",15553,9608,"5945",0.61775863177522,NA,NA,NA,NA,NA
+Apr 2008,"Northern Ireland",NA,188,157,"31",0.835106382978723,0.95,"was NOT met",21.6,NA,"155th"
+May 2008,"Northern Ireland",NA,176,153,"23",0.869318181818182,0.95,"was NOT met",14.2,NA,"172nd"
+Jun 2008,"Northern Ireland",NA,210,194,"16",0.923809523809524,0.95,"was NOT met",5.5,NA,"190th"
+Jul 2008,"Northern Ireland",NA,180,160,"20",0.888888888888889,0.95,"was NOT met",11,NA,"180th"
+Aug 2008,"Northern Ireland",NA,165,137,"28",0.83030303030303,0.95,"was NOT met",19.75,NA,"152nd"
+Sep 2008,"Northern Ireland",NA,190,165,"25",0.868421052631579,0.95,"was NOT met",15.5,NA,"171st"
+Oct 2008,"Northern Ireland",NA,178,156,"22",0.876404494382023,0.95,"was NOT met",13.1,NA,"175th"
+Nov 2008,"Northern Ireland",NA,167,153,"14",0.916167664670659,0.95,"was NOT met",5.65000000000001,NA,"188th"
+Dec 2008,"Northern Ireland",NA,177,164,"13",0.926553672316384,0.95,"was NOT met",4.15000000000001,NA,"192nd"
+Jan 2009,"Northern Ireland",NA,175,149,"26",0.851428571428571,0.95,"was NOT met",17.25,NA,"162nd"
+Feb 2009,"Northern Ireland",NA,193,163,"30",0.844559585492228,0.95,"was NOT met",20.35,NA,"160th"
+Mar 2009,"Northern Ireland",NA,215,199,"16",0.925581395348837,0.95,"was NOT met",5.25,NA,"191st"
+Apr 2009,"Northern Ireland",NA,189,169,"20",0.894179894179894,0.95,"was NOT met",10.55,NA,"182nd"
+May 2009,"Northern Ireland",NA,158,137,"21",0.867088607594937,0.95,"was NOT met",13.1,NA,"170th"
+Jun 2009,"Northern Ireland",NA,240,212,"28",0.883333333333333,0.95,"was NOT met",16,NA,"178th"
+Jul 2009,"Northern Ireland",NA,212,186,"26",0.877358490566038,0.95,"was NOT met",15.4,NA,"176th"
+Aug 2009,"Northern Ireland",NA,202,181,"21",0.896039603960396,0.95,"was NOT met",10.9,NA,"183rd"
+Sep 2009,"Northern Ireland",NA,243,204,"39",0.839506172839506,0.95,"was NOT met",26.85,NA,"157th"
+Oct 2009,"Northern Ireland",NA,193,174,"19",0.901554404145078,0.95,"was NOT met",9.34999999999999,NA,"185th"
+Nov 2009,"Northern Ireland",NA,198,175,"23",0.883838383838384,0.95,"was NOT met",13.1,NA,"179th"
+Dec 2009,"Northern Ireland",NA,183,165,"18",0.901639344262295,0.95,"was NOT met",8.84999999999999,NA,"186th"
+Jan 2010,"Northern Ireland",NA,156,140,"16",0.897435897435897,0.95,"was NOT met",8.19999999999999,NA,"184th"
+Feb 2010,"Northern Ireland",NA,180,160,"20",0.888888888888889,0.95,"was NOT met",11,NA,"180th"
+Mar 2010,"Northern Ireland",NA,221,204,"17",0.923076923076923,0.95,"was NOT met",5.94999999999999,NA,"189th"
+Apr 2010,"Northern Ireland",NA,204,180,"24",0.882352941176471,0.95,"was NOT met",13.8,NA,"177th"
+May 2010,"Northern Ireland",NA,208,179,"29",0.860576923076923,0.95,"was NOT met",18.6,NA,"168th"
+Jun 2010,"Northern Ireland",NA,239,206,"33",0.861924686192469,0.95,"was NOT met",21.05,NA,"169th"
+Jul 2010,"Northern Ireland",NA,213,195,"18",0.915492957746479,0.95,"was NOT met",7.34999999999999,NA,"187th"
+Aug 2010,"Northern Ireland",NA,198,161,"37",0.813131313131313,0.95,"was NOT met",27.1,NA,"140th"
+Sep 2010,"Northern Ireland",NA,272,233,"39",0.856617647058823,0.95,"was NOT met",25.4,NA,"165th"
+Oct 2010,"Northern Ireland",NA,209,179,"30",0.856459330143541,0.95,"was NOT met",19.55,NA,"163rd"
+Nov 2010,"Northern Ireland",NA,245,203,"42",0.828571428571429,0.95,"was NOT met",29.75,NA,"149th"
+Dec 2010,"Northern Ireland",NA,220,180,"40",0.818181818181818,0.95,"was NOT met",29,NA,"143rd"
+Jan 2011,"Northern Ireland",NA,234,201,"33",0.858974358974359,0.95,"was NOT met",21.3,NA,"167th"
+Feb 2011,"Northern Ireland",NA,204,157,"47",0.769607843137255,0.95,"was NOT met",36.8,NA,"119th"
+Mar 2011,"Northern Ireland",NA,240,196,"44",0.816666666666667,0.95,"was NOT met",32,NA,"141st"
+Apr 2011,"Northern Ireland",NA,199,163,"36",0.819095477386935,0.95,"was NOT met",26.05,NA,"144th"
+May 2011,"Northern Ireland",NA,216,172,"44",0.796296296296296,0.95,"was NOT met",33.2,NA,"130th"
+Jun 2011,"Northern Ireland",NA,288,238,"50",0.826388888888889,0.95,"was NOT met",35.6,NA,"148th"
+Jul 2011,"Northern Ireland",NA,218,172,"46",0.788990825688073,0.95,"was NOT met",35.1,NA,"125th"
+Aug 2011,"Northern Ireland",NA,252,209,"43",0.829365079365079,0.95,"was NOT met",30.4,NA,"150th"
+Sep 2011,"Northern Ireland",NA,265,220,"45",0.830188679245283,0.95,"was NOT met",31.75,NA,"151st"
+Oct 2011,"Northern Ireland",NA,250,201,"49",0.804,0.95,"was NOT met",36.5,NA,"134th"
+Nov 2011,"Northern Ireland",NA,280,236,"44",0.842857142857143,0.95,"was NOT met",30,NA,"158th"
+Dec 2011,"Northern Ireland",NA,252,210,"42",0.833333333333333,0.95,"was NOT met",29.4,NA,"154th"
+Jan 2012,"Northern Ireland",NA,261,212,"49",0.812260536398467,0.95,"was NOT met",35.95,NA,"139th"
+Feb 2012,"Northern Ireland",NA,254,187,"67",0.736220472440945,0.95,"was NOT met",54.3,NA,"113th"
+Mar 2012,"Northern Ireland",NA,283,239,"44",0.84452296819788,0.95,"was NOT met",29.85,NA,"159th"
+Apr 2012,"Northern Ireland",NA,234,186,"48",0.794871794871795,0.95,"was NOT met",36.3,NA,"129th"
+May 2012,"Northern Ireland",NA,294,238,"56",0.80952380952381,0.95,"was NOT met",41.3,NA,"136th"
+Jun 2012,"Northern Ireland",NA,227,186,"41",0.819383259911894,0.95,"was NOT met",29.65,NA,"145th"
+Jul 2012,"Northern Ireland",NA,258,208,"50",0.806201550387597,0.95,"was NOT met",37.1,NA,"135th"
+Aug 2012,"Northern Ireland",NA,256,203,"53",0.79296875,0.95,"was NOT met",40.2,NA,"128th"
+Sep 2012,"Northern Ireland",NA,255,204,"51",0.8,0.95,"was NOT met",38.25,NA,"132nd"
+Oct 2012,"Northern Ireland",NA,305,245,"60",0.80327868852459,0.95,"was NOT met",44.75,NA,"133rd"
+Nov 2012,"Northern Ireland",NA,279,226,"53",0.810035842293907,0.95,"was NOT met",39.05,NA,"137th"
+Dec 2012,"Northern Ireland",NA,225,196,"29",0.871111111111111,0.95,"was NOT met",17.75,NA,"174th"
+Jan 2013,"Northern Ireland",NA,301,252,"49",0.837209302325581,0.95,"was NOT met",33.95,NA,"156th"
+Feb 2013,"Northern Ireland",NA,266,212,"54",0.796992481203007,0.95,"was NOT met",40.7,NA,"131st"
+Mar 2013,"Northern Ireland",NA,268,233,"35",0.869402985074627,0.95,"was NOT met",21.6,NA,"173rd"
+Apr 2013,"Northern Ireland",NA,227,184,"43",0.81057268722467,0.95,"was NOT met",31.65,NA,"138th"
+May 2013,"Northern Ireland",NA,265,227,"38",0.856603773584906,0.95,"was NOT met",24.75,NA,"164th"
+Jun 2013,"Northern Ireland",NA,277,228,"49",0.823104693140794,0.95,"was NOT met",35.15,NA,"147th"
+Jul 2013,"Northern Ireland",NA,294,249,"45",0.846938775510204,0.95,"was NOT met",30.3,NA,"161st"
+Aug 2013,"Northern Ireland",NA,283,235,"48",0.830388692579505,0.95,"was NOT met",33.85,NA,"153rd"
+Sep 2013,"Northern Ireland",NA,304,250,"54",0.822368421052632,0.95,"was NOT met",38.8,NA,"146th"
+Oct 2013,"Northern Ireland",NA,347,269,"78",0.77521613832853,0.95,"was NOT met",60.65,NA,"122nd"
+Nov 2013,"Northern Ireland",NA,266,228,"38",0.857142857142857,0.95,"was NOT met",24.7,NA,"166th"
+Dec 2013,"Northern Ireland",NA,279,228,"51",0.817204301075269,0.95,"was NOT met",37.05,NA,"142nd"
+Jan 2014,"Northern Ireland",NA,302,237,"65",0.78476821192053,0.95,"was NOT met",49.9,NA,"124th"
+Feb 2014,"Northern Ireland",NA,258,204,"54",0.790697674418605,0.95,"was NOT met",41.1,NA,"127th"
+Mar 2014,"Northern Ireland",NA,277,219,"58",0.790613718411552,0.95,"was NOT met",44.15,NA,"126th"
+Apr 2014,"Northern Ireland",NA,305,235,"70",0.770491803278688,0.95,"was NOT met",54.75,NA,"121st"
+May 2014,"Northern Ireland",NA,308,226,"82",0.733766233766234,0.95,"was NOT met",66.6,NA,"111th"
+Jun 2014,"Northern Ireland",NA,283,218,"65",0.770318021201413,0.95,"was NOT met",50.85,NA,"120th"
+Jul 2014,"Northern Ireland",NA,317,230,"87",0.725552050473186,0.95,"was NOT met",71.15,NA,"110th"
+Aug 2014,"Northern Ireland",NA,292,216,"76",0.73972602739726,0.95,"was NOT met",61.4,NA,"114th"
+Sep 2014,"Northern Ireland",NA,330,213,"117",0.645454545454546,0.95,"was NOT met",100.5,NA,"74th"
+Oct 2014,"Northern Ireland",NA,321,225,"96",0.700934579439252,0.95,"was NOT met",79.95,NA,"99th"
+Nov 2014,"Northern Ireland",NA,301,223,"78",0.740863787375415,0.95,"was NOT met",62.95,NA,"115th"
+Dec 2014,"Northern Ireland",NA,316,236,"80",0.746835443037975,0.95,"was NOT met",64.2,NA,"117th"
+Jan 2015,"Northern Ireland",NA,316,227,"89",0.718354430379747,0.95,"was NOT met",73.2,NA,"104th"
+Feb 2015,"Northern Ireland",NA,303,213,"90",0.702970297029703,0.95,"was NOT met",74.85,NA,"100th"
+Mar 2015,"Northern Ireland",NA,267,193,"74",0.722846441947566,0.95,"was NOT met",60.65,NA,"108th"
+Apr 2015,"Northern Ireland",NA,304,236,"68",0.776315789473684,0.95,"was NOT met",52.8,NA,"123rd"
+May 2015,"Northern Ireland",NA,302,222,"80",0.735099337748344,0.95,"was NOT met",64.9,NA,"112th"
+Jun 2015,"Northern Ireland",NA,347,241,"106",0.694524495677233,0.95,"was NOT met",88.65,NA,"96th"
+Jul 2015,"Northern Ireland",NA,332,240,"92",0.72289156626506,0.95,"was NOT met",75.4,NA,"109th"
+Aug 2015,"Northern Ireland",NA,302,198,"104",0.655629139072848,0.95,"was NOT met",88.9,NA,"76th"
+Sep 2015,"Northern Ireland",NA,358,249,"109",0.695530726256983,0.95,"was NOT met",91.1,NA,"97th"
+Oct 2015,"Northern Ireland",NA,305,196,"109",0.642622950819672,0.95,"was NOT met",93.75,NA,"73rd"
+Nov 2015,"Northern Ireland",NA,385,286,"99",0.742857142857143,0.95,"was NOT met",79.75,NA,"116th"
+Dec 2015,"Northern Ireland",NA,370,267,"103",0.721621621621622,0.95,"was NOT met",84.5,NA,"107th"
+Jan 2016,"Northern Ireland",NA,314,208,"106",0.662420382165605,0.95,"was NOT met",90.3,NA,"78th"
+Feb 2016,"Northern Ireland",NA,334,240,"94",0.718562874251497,0.95,"was NOT met",77.3,NA,"105th"
+Mar 2016,"Northern Ireland",NA,335,240,"95",0.716417910447761,0.95,"was NOT met",78.25,NA,"103rd"
+Apr 2016,"Northern Ireland",NA,327,224,"103",0.685015290519878,0.95,"was NOT met",86.65,NA,"90th"
+May 2016,"Northern Ireland",NA,336,233,"103",0.693452380952381,0.95,"was NOT met",86.2,NA,"95th"
+Jun 2016,"Northern Ireland",NA,385,277,"108",0.719480519480519,0.95,"was NOT met",88.75,NA,"106th"
+Jul 2016,"Northern Ireland",NA,313,221,"92",0.706070287539936,0.95,"was NOT met",76.35,NA,"101st"
+Aug 2016,"Northern Ireland",NA,371,250,"121",0.673854447439353,0.95,"was NOT met",102.45,NA,"84th"
+Sep 2016,"Northern Ireland",NA,370,234,"136",0.632432432432432,0.95,"was NOT met",117.5,NA,"70th"
+Oct 2016,"Northern Ireland",NA,350,229,"121",0.654285714285714,0.95,"was NOT met",103.5,NA,"75th"
+Nov 2016,"Northern Ireland",NA,382,256,"126",0.670157068062827,0.95,"was NOT met",106.9,NA,"82nd"
+Dec 2016,"Northern Ireland",NA,339,233,"106",0.687315634218289,0.95,"was NOT met",89.05,NA,"91st"
+Jan 2017,"Northern Ireland",NA,377,253,"124",0.671087533156499,0.95,"was NOT met",105.15,NA,"83rd"
+Feb 2017,"Northern Ireland",NA,360,251,"109",0.697222222222222,0.95,"was NOT met",91,NA,"98th"
+Mar 2017,"Northern Ireland",NA,339,234,"105",0.690265486725664,0.95,"was NOT met",88.05,NA,"92nd"
+Apr 2017,"Northern Ireland",NA,327,226,"101",0.691131498470948,0.95,"was NOT met",84.65,NA,"94th"
+May 2017,"Northern Ireland",NA,393,266,"127",0.676844783715013,0.95,"was NOT met",107.35,NA,"87th"
+Jun 2017,"Northern Ireland",NA,391,270,"121",0.690537084398977,0.95,"was NOT met",101.45,NA,"93rd"
+Jul 2017,"Northern Ireland",NA,324,208,"116",0.641975308641975,0.95,"was NOT met",99.8,NA,"72nd"
+Aug 2017,"Northern Ireland",NA,332,212,"120",0.63855421686747,0.95,"was NOT met",103.4,NA,"71st"
+Sep 2017,"Northern Ireland",NA,372,232,"140",0.623655913978495,0.95,"was NOT met",121.4,NA,"68th"
+Oct 2017,"Northern Ireland",NA,344,233,"111",0.677325581395349,0.95,"was NOT met",93.8,NA,"88th"
+Nov 2017,"Northern Ireland",NA,426,281,"145",0.65962441314554,0.95,"was NOT met",123.7,NA,"77th"
+Dec 2017,"Northern Ireland",NA,352,235,"117",0.667613636363636,0.95,"was NOT met",99.4,NA,"80th"
+Jan 2018,"Northern Ireland",NA,366,245,"121",0.669398907103825,0.95,"was NOT met",102.7,NA,"81st"
+Feb 2018,"Northern Ireland",NA,296,200,"96",0.675675675675676,0.95,"was NOT met",81.2,NA,"86th"
+Mar 2018,"Northern Ireland",NA,345,260,"85",0.753623188405797,0.95,"was NOT met",67.75,NA,"118th"
+Apr 2018,"Northern Ireland",NA,343,234,"109",0.682215743440233,0.95,"was NOT met",91.85,NA,"89th"
+May 2018,"Northern Ireland",NA,414,279,"135",0.673913043478261,0.95,"was NOT met",114.3,NA,"85th"
+Jun 2018,"Northern Ireland",NA,367,260,"107",0.708446866485014,0.95,"was NOT met",88.65,NA,"102nd"
+Jul 2018,"Northern Ireland",NA,370,231,"139",0.624324324324324,0.95,"was NOT met",120.5,NA,"69th"
+Aug 2018,"Northern Ireland",NA,403,268,"135",0.665012406947891,0.95,"was NOT met",114.85,NA,"79th"
+Sep 2018,"Northern Ireland",NA,377,234,"143",0.620689655172414,0.95,"was NOT met",124.15,NA,"67th"
+Oct 2018,"Northern Ireland",NA,435,256,"179",0.588505747126437,0.95,"was NOT met",157.25,NA,"60th"
+Nov 2018,"Northern Ireland",NA,390,224,"166",0.574358974358974,0.95,"was NOT met",146.5,NA,"56th"
+Dec 2018,"Northern Ireland",NA,318,192,"126",0.60377358490566,0.95,"was NOT met",110.1,NA,"64th"
+Jan 2019,"Northern Ireland",NA,435,253,"182",0.581609195402299,0.95,"was NOT met",160.25,NA,"59th"
+Feb 2019,"Northern Ireland",NA,337,203,"134",0.602373887240356,0.95,"was NOT met",117.15,NA,"62nd"
+Mar 2019,"Northern Ireland",NA,314,194,"120",0.617834394904459,0.95,"was NOT met",104.3,NA,"66th"
+Apr 2019,"Northern Ireland",NA,355,205,"150",0.577464788732394,0.95,"was NOT met",132.25,NA,"57th"
+May 2019,"Northern Ireland",NA,360,176,"184",0.488888888888889,0.95,"was NOT met",166,NA,"38th"
+Jun 2019,"Northern Ireland",NA,325,180,"145",0.553846153846154,0.95,"was NOT met",128.75,NA,"53rd"
+Jul 2019,"Northern Ireland",NA,391,205,"186",0.524296675191816,0.95,"was NOT met",166.45,NA,"46th"
+Aug 2019,"Northern Ireland",NA,345,196,"149",0.568115942028986,0.95,"was NOT met",131.75,NA,"55th"
+Sep 2019,"Northern Ireland",NA,390,188,"202",0.482051282051282,0.95,"was NOT met",182.5,NA,"36th"
+Oct 2019,"Northern Ireland",NA,423,210,"213",0.49645390070922,0.95,"was NOT met",191.85,NA,"41st"
+Nov 2019,"Northern Ireland",NA,395,205,"190",0.518987341772152,0.95,"was NOT met",170.25,NA,"45th"
+Dec 2019,"Northern Ireland",NA,351,175,"176",0.498575498575499,0.95,"was NOT met",158.45,NA,"42nd"
+Jan 2020,"Northern Ireland",NA,407,181,"226",0.444717444717445,0.95,"was NOT met",205.65,NA,"31st"
+Feb 2020,"Northern Ireland",NA,350,170,"180",0.485714285714286,0.95,"was NOT met",162.5,NA,"37th"
+Mar 2020,"Northern Ireland",NA,440,237,"203",0.538636363636364,0.95,"was NOT met",181,NA,"49th"
+Apr 2020,"Northern Ireland",NA,362,181,"181",0.5,0.95,"was NOT met",162.9,NA,"43rd"
+May 2020,"Northern Ireland",NA,279,137,"142",0.491039426523298,0.95,"was NOT met",128.05,NA,"39th"
+Jun 2020,"Northern Ireland",NA,324,182,"142",0.561728395061728,0.95,"was NOT met",125.8,NA,"54th"
+Jul 2020,"Northern Ireland",NA,355,219,"136",0.616901408450704,0.95,"was NOT met",118.25,NA,"65th"
+Aug 2020,"Northern Ireland",NA,352,204,"148",0.579545454545455,0.95,"was NOT met",130.4,NA,"58th"
+Sep 2020,"Northern Ireland",NA,368,222,"146",0.603260869565217,0.95,"was NOT met",127.6,NA,"63rd"
+Oct 2020,"Northern Ireland",NA,377,224,"153",0.594164456233422,0.95,"was NOT met",134.15,NA,"61st"
+Nov 2020,"Northern Ireland",NA,387,206,"181",0.532299741602067,0.95,"was NOT met",161.65,NA,"48th"
+Dec 2020,"Northern Ireland",NA,333,184,"149",0.552552552552553,0.95,"was NOT met",132.35,NA,"52nd"
+Jan 2021,"Northern Ireland",NA,374,167,"207",0.446524064171123,0.95,"was NOT met",188.3,NA,"32nd"
+Feb 2021,"Northern Ireland",NA,366,165,"201",0.450819672131148,0.95,"was NOT met",182.7,NA,"33rd"
+Mar 2021,"Northern Ireland",NA,439,216,"223",0.492027334851936,0.95,"was NOT met",201.05,NA,"40th"
+Apr 2021,"Northern Ireland",NA,390,214,"176",0.548717948717949,0.95,"was NOT met",156.5,NA,"51st"
+May 2021,"Northern Ireland",NA,405,203,"202",0.501234567901235,0.95,"was NOT met",181.75,NA,"44th"
+Jun 2021,"Northern Ireland",NA,448,243,"205",0.542410714285714,0.95,"was NOT met",182.6,NA,"50th"
+Jul 2021,"Northern Ireland",NA,368,193,"175",0.52445652173913,0.95,"was NOT met",156.6,NA,"47th"
+Aug 2021,"Northern Ireland",NA,355,156,"199",0.43943661971831,0.95,"was NOT met",181.25,NA,"30th"
+Sep 2021,"Northern Ireland",NA,431,183,"248",0.424593967517401,0.95,"was NOT met",226.45,NA,"27th"
+Oct 2021,"Northern Ireland",NA,412,186,"226",0.451456310679612,0.95,"was NOT met",205.4,NA,"34th"
+Nov 2021,"Northern Ireland",NA,452,188,"264",0.415929203539823,0.95,"was NOT met",241.4,NA,"26th"
+Dec 2021,"Northern Ireland",NA,374,161,"213",0.43048128342246,0.95,"was NOT met",194.3,NA,"29th"
+Jan 2022,"Northern Ireland",NA,420,142,"278",0.338095238095238,0.95,"was NOT met",257,NA,"12th"
+Feb 2022,"Northern Ireland",NA,425,175,"250",0.411764705882353,0.95,"was NOT met",228.75,NA,"25th"
+Mar 2022,"Northern Ireland",NA,414,199,"215",0.480676328502415,0.95,"was NOT met",194.3,NA,"35th"
+Apr 2022,"Northern Ireland",NA,398,157,"241",0.394472361809045,0.95,"was NOT met",221.1,NA,"22nd"
+May 2022,"Northern Ireland",NA,472,166,"306",0.351694915254237,0.95,"was NOT met",282.4,NA,"13th"
+Jun 2022,"Northern Ireland",NA,419,163,"256",0.389021479713604,0.95,"was NOT met",235.05,NA,"21st"
+Jul 2022,"Northern Ireland",NA,425,182,"243",0.428235294117647,0.95,"was NOT met",221.75,NA,"28th"
+Aug 2022,"Northern Ireland",NA,450,172,"278",0.382222222222222,0.95,"was NOT met",255.5,NA,"20th"
+Sep 2022,"Northern Ireland",NA,458,173,"285",0.377729257641921,0.95,"was NOT met",262.1,NA,"19th"
+Oct 2022,"Northern Ireland",NA,529,189,"340",0.357277882797732,0.95,"was NOT met",313.55,NA,"14th"
+Nov 2022,"Northern Ireland",NA,485,179,"306",0.369072164948454,0.95,"was NOT met",281.75,NA,"16th"
+Dec 2022,"Northern Ireland",NA,373,138,"235",0.369973190348525,0.95,"was NOT met",216.35,NA,"17th"
+Jan 2023,"Northern Ireland",NA,481,162,"319",0.336798336798337,0.95,"was NOT met",294.95,NA,"11th"
+Feb 2023,"Northern Ireland",NA,440,131,"309",0.297727272727273,0.95,"was NOT met",287,NA,"3rd"
+Mar 2023,"Northern Ireland",NA,457,186,"271",0.407002188183807,0.95,"was NOT met",248.15,NA,"24th"
+Apr 2023,"Northern Ireland",NA,416,169,"247",0.40625,0.95,"was NOT met",226.2,NA,"23rd"
+May 2023,"Northern Ireland",NA,490,164,"326",0.33469387755102,0.95,"was NOT met",301.5,NA,"9th"
+Jun 2023,"Northern Ireland",NA,465,173,"292",0.372043010752688,0.95,"was NOT met",268.75,NA,"18th"
+Jul 2023,"Northern Ireland",NA,471,169,"302",0.358811040339703,0.95,"was NOT met",278.45,NA,"15th"
+Aug 2023,"Northern Ireland",NA,478,155,"323",0.324267782426778,0.95,"was NOT met",299.1,NA,"7th"
+Sep 2023,"Northern Ireland",NA,408,137,"271",0.33578431372549,0.95,"was NOT met",250.6,NA,"10th"
+Oct 2023,"Northern Ireland",NA,408,115,"293",0.281862745098039,0.95,"was NOT met",272.6,NA,""
+Nov 2023,"Northern Ireland",NA,399,119,"280",0.298245614035088,0.95,"was NOT met",260.05,NA,"4th"
+Dec 2023,"Northern Ireland",NA,269,89,"180",0.330855018587361,0.95,"was NOT met",166.55,NA,"8th"
+Jan 2024,"Northern Ireland",NA,397.5,121,"276.5",0.30440251572327,0.95,"was NOT met",256.625,NA,"6th"
+Feb 2024,"Northern Ireland",NA,384,116,"268",0.302083333333333,0.95,"was NOT met",248.8,NA,"5th"
+Mar 2024,"Northern Ireland",NA,329.5,94.5,"235",0.286798179059181,0.95,"was NOT met",218.525,NA,"2nd"
+Mar 2012,"Scotland",NA,2969,2815,"154",0.948130683731896,0.95,"was NOT met",5.54999999999973,NA,"47th"
+Jun 2012,"Scotland",NA,3130,2982,"148",0.952715654952077,0.95,"was met",0,NA,"48th"
+Sep 2012,"Scotland",NA,3075,2890,"185",0.939837398373984,0.95,"was NOT met",31.25,"Jun 2012","41st"
+Dec 2012,"Scotland",NA,3144,3013,"131",0.958333333333333,0.95,"was met",0,"Jun 2012","49th"
+Mar 2013,"Scotland",NA,2900,2740,"160",0.944827586206897,0.95,"was NOT met",15,"Dec 2012","43rd"
+Jun 2013,"Scotland",NA,2994,2829,"165",0.944889779559118,0.95,"was NOT met",15.2999999999997,"Dec 2012","44th"
+Sep 2013,"Scotland",NA,3089,2919,"170",0.944966008416963,0.95,"was NOT met",15.5499999999997,"Dec 2012","45th"
+Dec 2013,"Scotland",NA,3091,2925,"166",0.946295697185377,0.95,"was NOT met",11.4499999999998,"Dec 2012","46th"
+Mar 2014,"Scotland",NA,2929,2681,"248",0.915329463980881,0.95,"was NOT met",101.55,"Dec 2012","36th"
+Jun 2014,"Scotland",NA,3196,2970,"226",0.929286608260325,0.95,"was NOT met",66.1999999999998,"Dec 2012","39th"
+Sep 2014,"Scotland",NA,3157,2952,"205",0.935064935064935,0.95,"was NOT met",47.1499999999996,"Dec 2012","40th"
+Dec 2014,"Scotland",NA,3031,2854,"177",0.941603431210821,0.95,"was NOT met",25.4499999999998,"Dec 2012","42nd"
+Mar 2015,"Scotland",NA,3030,2785,"245",0.919141914191419,0.95,"was NOT met",93.5,"Dec 2012","37th"
+Jun 2015,"Scotland",NA,3122,2875,"247",0.920884048686739,0.95,"was NOT met",90.8999999999996,"Dec 2012","38th"
+Sep 2015,"Scotland",NA,3175,2864,"311",0.902047244094488,0.95,"was NOT met",152.25,"Dec 2012","33rd"
+Dec 2015,"Scotland",NA,3177,2886,"291",0.908404154863078,0.95,"was NOT met",132.15,"Dec 2012","35th"
+Mar 2016,"Scotland",NA,3049,2751,"298",0.902263037061332,0.95,"was NOT met",145.55,"Dec 2012","34th"
+Jun 2016,"Scotland",NA,3129,2811,"318",0.898370086289549,0.95,"was NOT met",161.55,"Dec 2012","32nd"
+Sep 2016,"Scotland",NA,3209,2796,"413",0.87129947023995,0.95,"was NOT met",252.55,"Dec 2012","27th"
+Dec 2016,"Scotland",NA,3254,2846,"408",0.874615857406269,0.95,"was NOT met",245.3,"Dec 2012","30th"
+Mar 2017,"Scotland",NA,3281,2891,"390",0.881133800670527,0.95,"was NOT met",225.95,"Dec 2012","31st"
+Jun 2017,"Scotland",NA,3492,3033,"459",0.868556701030928,0.95,"was NOT met",284.4,"Dec 2012","25th"
+Sep 2017,"Scotland",NA,3388,2954,"434",0.871900826446281,0.95,"was NOT met",264.6,"Dec 2012","28th"
+Dec 2017,"Scotland",NA,3393,2955,"438",0.870910698496905,0.95,"was NOT met",268.35,"Dec 2012","26th"
+Mar 2018,"Scotland",NA,3402,2892,"510",0.850088183421517,0.95,"was NOT met",339.9,"Dec 2012","23rd"
+Jun 2018,"Scotland",NA,3665,3100,"565",0.845839017735334,0.95,"was NOT met",381.75,"Dec 2012","21st"
+Sep 2018,"Scotland",NA,3780,3076,"704",0.813756613756614,0.95,"was NOT met",515,"Dec 2012","11th"
+Dec 2018,"Scotland",NA,3789,3132,"657",0.826603325415677,0.95,"was NOT met",467.55,"Dec 2012","14th"
+Mar 2019,"Scotland",NA,3699,3011,"688",0.814003784806705,0.95,"was NOT met",503.05,"Dec 2012","12th"
+Jun 2019,"Scotland",NA,3908,3220,"688",0.823950870010235,0.95,"was NOT met",492.6,"Dec 2012","13th"
+Sep 2019,"Scotland",NA,3927,3273,"654",0.833460656990069,0.95,"was NOT met",457.65,"Dec 2012","17th"
+Dec 2019,"Scotland",NA,3723,3115,"608",0.83669084071985,0.95,"was NOT met",421.85,"Dec 2012","18th"
+Mar 2020,"Scotland",NA,3832,3244,"588",0.846555323590814,0.95,"was NOT met",396.4,"Dec 2012","22nd"
+Jun 2020,"Scotland",NA,3053,2567,"486",0.840812315754995,0.95,"was NOT met",333.35,"Dec 2012","19th"
+Sep 2020,"Scotland",NA,3053,2666,"387",0.873239436619718,0.95,"was NOT met",234.35,"Dec 2012","29th"
+Dec 2020,"Scotland",NA,3502,3017,"485",0.861507709880069,0.95,"was NOT met",309.9,"Dec 2012","24th"
+Mar 2021,"Scotland",NA,3589,2978,"611",0.829757592644191,0.95,"was NOT met",431.55,"Dec 2012","15th"
+Jun 2021,"Scotland",NA,3953,3324,"629",0.840880344042499,0.95,"was NOT met",431.35,"Dec 2012","20th"
+Sep 2021,"Scotland",NA,4010,3339,"671",0.832668329177057,0.95,"was NOT met",470.5,"Dec 2012","16th"
+Dec 2021,"Scotland",NA,4143,3279,"864",0.79145546705286,0.95,"was NOT met",656.85,"Dec 2012","10th"
+Mar 2022,"Scotland",NA,3861,2968,"893",0.768712768712769,0.95,"was NOT met",699.95,"Dec 2012","9th"
+Jun 2022,"Scotland",NA,4072,3107,"965",0.763015717092338,0.95,"was NOT met",761.4,"Dec 2012","8th"
+Sep 2022,"Scotland",NA,4166,3129,"1037",0.751080172827652,0.95,"was NOT met",828.7,"Dec 2012","7th"
+Dec 2022,"Scotland",NA,4262,3056,"1206",0.717034256217738,0.95,"was NOT met",992.9,"Dec 2012","4th"
+Mar 2023,"Scotland",NA,4230,2938,"1292",0.694562647754137,0.95,"was NOT met",1080.5,"Dec 2012",""
+Jun 2023,"Scotland",NA,4299,3169,"1130",0.737148173993952,0.95,"was NOT met",915.05,"Dec 2012","6th"
+Sep 2023,"Scotland",NA,4623,3326,"1297",0.719446247025741,0.95,"was NOT met",1065.85,"Dec 2012","5th"
+Dec 2023,"Scotland",NA,4456,3166,"1290",0.710502692998205,0.95,"was NOT met",1067.2,"Dec 2012","3rd"
+Mar 2024,"Scotland",NA,4294,3025,"1269",0.704471355379599,0.95,"was NOT met",1054.3,"Dec 2012","2nd"
+Jun 2019,"Wales",NA,1374,860,"514",0.625909752547307,0.75,"was NOT met",170.5,NA,"45th"
+Jul 2019,"Wales",NA,1491,916,"575",0.614352783366868,0.75,"was NOT met",202.25,NA,"40th"
+Aug 2019,"Wales",NA,1446,899,"547",0.621715076071923,0.75,"was NOT met",185.5,NA,"44th"
+Sep 2019,"Wales",NA,1447,873,"574",0.603317208016586,0.75,"was NOT met",212.25,NA,"35th"
+Oct 2019,"Wales",NA,1585,945,"640",0.596214511041009,0.75,"was NOT met",243.75,NA,"31st"
+Nov 2019,"Wales",NA,1383,826,"557",0.597252349963847,0.75,"was NOT met",211.25,NA,"32nd"
+Dec 2019,"Wales",NA,1429,903,"526",0.631910426871938,0.75,"was NOT met",168.75,NA,"47th"
+Jan 2020,"Wales",NA,1485,873,"612",0.587878787878788,0.75,"was NOT met",240.75,NA,"28th"
+Feb 2020,"Wales",NA,1381,783,"598",0.566980448950036,0.75,"was NOT met",252.75,NA,"20th"
+Mar 2020,"Wales",NA,1692,1048,"644",0.619385342789598,0.75,"was NOT met",221,NA,"42nd"
+Apr 2020,"Wales",NA,1240,767,"473",0.618548387096774,0.75,"was NOT met",163,NA,"41st"
+May 2020,"Wales",NA,925,579,"346",0.625945945945946,0.75,"was NOT met",114.75,NA,"46th"
+Jun 2020,"Wales",NA,1172,811,"361",0.6919795221843,0.75,"was NOT met",68,NA,"58th"
+Jul 2020,"Wales",NA,1239,881,"358",0.711057304277643,0.75,"was NOT met",48.25,NA,"60th"
+Aug 2020,"Wales",NA,1186,829,"357",0.698988195615514,0.75,"was NOT met",60.5,NA,"59th"
+Sep 2020,"Wales",NA,1366,890,"476",0.651537335285505,0.75,"was NOT met",134.5,NA,"52nd"
+Oct 2020,"Wales",NA,1380,893,"487",0.647101449275362,0.75,"was NOT met",142,NA,"51st"
+Nov 2020,"Wales",NA,1410,892,"518",0.632624113475177,0.75,"was NOT met",165.5,NA,"48th"
+Dec 2020,"Wales",NA,1425,953,"472",0.668771929824561,0.75,"was NOT met",115.75,NA,"54th"
+Jan 2021,"Wales",NA,1498,928,"570",0.619492656875834,0.75,"was NOT met",195.5,NA,"43rd"
+Feb 2021,"Wales",NA,1434,864,"570",0.602510460251046,0.75,"was NOT met",211.5,NA,"34th"
+Mar 2021,"Wales",NA,1764,1195,"569",0.677437641723356,0.75,"was NOT met",128,NA,"55th"
+Apr 2021,"Wales",NA,1534,1025,"509",0.668187744458931,0.75,"was NOT met",125.5,NA,"53rd"
+May 2021,"Wales",NA,1609,1104,"505",0.686140459912989,0.75,"was NOT met",102.75,NA,"57th"
+Jun 2021,"Wales",NA,1734,1181,"553",0.681084198385236,0.75,"was NOT met",119.5,NA,"56th"
+Jul 2021,"Wales",NA,1725,1094,"631",0.634202898550725,0.75,"was NOT met",199.75,NA,"49th"
+Aug 2021,"Wales",NA,1625,1043,"582",0.641846153846154,0.75,"was NOT met",175.75,NA,"50th"
+Sep 2021,"Wales",NA,1701,1030,"671",0.605526161081717,0.75,"was NOT met",245.75,NA,"38th"
+Oct 2021,"Wales",NA,1687,1016,"671",0.602252519264967,0.75,"was NOT met",249.25,NA,"33rd"
+Nov 2021,"Wales",NA,1895,1116,"779",0.588918205804749,0.75,"was NOT met",305.25,NA,"29th"
+Dec 2021,"Wales",NA,1630,971,"659",0.595705521472393,0.75,"was NOT met",251.5,NA,"30th"
+Jan 2022,"Wales",NA,1577,847,"730",0.53709575142676,0.75,"was NOT met",335.75,NA,"3rd"
+Feb 2022,"Wales",NA,1607,972,"635",0.604853764779091,0.75,"was NOT met",233.25,NA,"36th"
+Mar 2022,"Wales",NA,1846,1122,"724",0.607800650054171,0.75,"was NOT met",262.5,NA,"39th"
+Apr 2022,"Wales",NA,1513,885,"628",0.584930601454065,0.75,"was NOT met",249.75,NA,"26th"
+May 2022,"Wales",NA,1760,965,"795",0.548295454545455,0.75,"was NOT met",355,NA,"11th"
+Jun 2022,"Wales",NA,1750,982,"768",0.561142857142857,0.75,"was NOT met",330.5,NA,"18th"
+Jul 2022,"Wales",NA,1741,969,"772",0.556576680068926,0.75,"was NOT met",336.75,NA,"15th"
+Aug 2022,"Wales",NA,1860,1011,"849",0.543548387096774,0.75,"was NOT met",384,NA,"8th"
+Sep 2022,"Wales",NA,1787,989,"798",0.553441522104085,0.75,"was NOT met",351.25,NA,"13th"
+Oct 2022,"Wales",NA,1841,994,"847",0.539923954372624,0.75,"was NOT met",386.75,NA,"6th"
+Nov 2022,"Wales",NA,1892,1060,"832",0.560253699788584,0.75,"was NOT met",359,NA,"17th"
+Dec 2022,"Wales",NA,1636,905,"731",0.553178484107579,0.75,"was NOT met",322,NA,"12th"
+Jan 2023,"Wales",NA,1878,975,"903",0.519169329073482,0.75,"was NOT met",433.5,NA,""
+Feb 2023,"Wales",NA,1667,906,"761",0.543491301739652,0.75,"was NOT met",344.25,NA,"7th"
+Mar 2023,"Wales",NA,1908,1112,"796",0.582809224318658,0.75,"was NOT met",319,NA,"24th"
+Apr 2023,"Wales",NA,1641,942,"699",0.574040219378428,0.75,"was NOT met",288.75,NA,"21st"
+May 2023,"Wales",NA,1847,1029,"818",0.557119653492149,0.75,"was NOT met",356.25,NA,"16th"
+Jun 2023,"Wales",NA,2001,1096,"905",0.547726136931534,0.75,"was NOT met",404.75,NA,"10th"
+Jul 2023,"Wales",NA,1927,1122,"805",0.582252205500778,0.75,"was NOT met",323.25,NA,"23rd"
+Aug 2023,"Wales",NA,1884,1100,"784",0.583864118895966,0.75,"was NOT met",313,NA,"25th"
+Sep 2023,"Wales",NA,1786,960,"826",0.537513997760358,0.75,"was NOT met",379.5,NA,"4th"
+Oct 2023,"Wales",NA,2081,1200,"881",0.576645843344546,0.75,"was NOT met",360.75,NA,"22nd"
+Nov 2023,"Wales",NA,2036,1143,"893",0.56139489194499,0.75,"was NOT met",384,NA,"19th"
+Dec 2023,"Wales",NA,1642,962,"680",0.585870889159562,0.75,"was NOT met",269.5,NA,"27th"
+Jan 2024,"Wales",NA,1917,1049,"868",0.547209181011998,0.75,"was NOT met",388.75,NA,"9th"
+Feb 2024,"Wales",NA,1756,938,"818",0.534168564920273,0.75,"was NOT met",379,NA,"2nd"
+Mar 2024,"Wales",NA,1633,988,"645",0.605021432945499,0.75,"was NOT met",236.75,NA,"37th"
+Apr 2024,"Wales",NA,1800,969,"831",0.538333333333333,0.75,"was NOT met",381,NA,"5th"
+May 2024,"Wales",NA,1800,997,"803",0.553888888888889,0.75,"was NOT met",353,NA,"14th"
