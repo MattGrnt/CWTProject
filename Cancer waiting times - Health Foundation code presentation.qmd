@@ -50,7 +50,7 @@ For each metric, I ran 3 models each starting with a different time period 2009 
 ```{r}
 #| eval: false
 #| code-fold: show
-#| code-summary: example code for models
+#| code-summary: Example code for models
 #model from different start points with glm
 total_model <- glm(total ~ monthly, gaussian(), 
                    data = USCR_predictions_ENG %>% 
@@ -124,7 +124,7 @@ USCR_predictions_ENG <- USCR_predictions_ENG %>%
 ```
 
 ```{r rounding.function}
-#| code-summary: rounding function
+#| code-summary: Rounding function
 
 CRUKRoundingPerYear <- function(number){
   # number <- 10050000
@@ -366,7 +366,7 @@ By 2029, there would be **`{r} USCPercChange`% more** urgent cancer referrals th
 ### 31 day waits
 
 ```{r 31.Day.modelling}
-#| code-summary: modelling
+#| code-summary: 31 day modelling
 
 CWT31 <- read_csv("data/CWT_31day_Overall_2024-09-04.csv", 
                   show_col_types = FALSE) # From sst hub
@@ -577,6 +577,7 @@ In England between July 2024 and June 2029 there would be **around 1.8 million p
 ### 62 day wait
 
 ```{r 62.Day.cleaning}
+#| code-summary: Cleaning data for 62 day wait
 CWT62 <- read_csv("data/CWT_62day_By cancer site_2024-09-05.csv", 
                   show_col_types = FALSE) # From sst hub
 ## Filtering and tidying names of main data
@@ -673,6 +674,7 @@ names(CWT62ENGsplit) <- CWT62ENG %>%
 ```
 
 ```{r 62.Day.modelling}
+#| code-summary: 62 day modelling 
 ## Modelling
 predictions_ENG <- CWT62ENGsplit %>%
   enframe(name = "list", value = "data") %>% # converts lists to single df
@@ -837,6 +839,7 @@ EnglandAnnualFigures <- EnglandAnnualFigures %>%
 ```
 
 ```{r 62.Day.model.graph}
+#| code-summary: 62 day graph
 #| column: page-inset-right
 predictions_ENG_summary <- predictions_ENG_all %>% 
   filter(date > "2024-06-01" & date < "2029-07-01") %>% 
@@ -924,6 +927,7 @@ plot_ly(predictions_ENG_all) %>%
 ```
 
 ```{r 62.Day.performance.graph}
+#| code-summary: 62 day target predictions
 #| column: page-inset-right
 
 dataP <- predictions_ENG_all %>%
