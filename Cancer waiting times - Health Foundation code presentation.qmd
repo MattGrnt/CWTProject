@@ -1039,6 +1039,7 @@ Modelling doesn't need to be complex, it needs to make sense.
 Initially used a poisson model approach with some adjustments, but the results didn't look reasonable. With time pressure of an election cycle, stripping it back to something simpler meant we could still deliver results and have an influence.
 
 ## What would I do differently? 
+Try the simple model first and decide if it is good enough. 
 
 If we had more time, I would explore other modelling approaches - binomial or GAM
 
