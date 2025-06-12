@@ -1,0 +1,34 @@
+---
+title: "Cancer Waiting Times Analysis"
+author: "Your Name"
+format: 
+  revealjs:
+    theme: serif
+    transition: fade
+    slide-number: true
+    center-title-slide: true
+    incremental: true
+    chalkboard: false
+    toc: false
+editor: visual
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Cancer Waiting Times Projections
+
+During the run up to general election 2024, Cancer Research UK wanted to keep cancer high on the political agenda.
+
+Waiting times had long been a pressing issue, and likely to generate press
+
+## Cancer waiting times over the next parliamentary term
+
+Data: NHS England Cancer Waiting Times metrics
+
+This project focused on three key points:
+
+1.  Number of urgent cancer referrals being made 
+2.  Number of people starting treatment - 31 day wait metric
+3.  How many won't start their treatment within the NHS England target window - 62 day wait metric

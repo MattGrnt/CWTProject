@@ -15,26 +15,23 @@ format:
     self-contained: true
 ---
 
-• A brief explanation of what problem you are trying to solve and the data you have used
-    
-• The approach you have taken to solving the problem
-    Linear regression models to make predictions on patient volumes over the next 5 years. Ran different 3 different models with different start dates to get best estimates, ultimately settling on the model that used all available historical data. There was some debate about using more recent models, but it seemed likely they overinterpreted some recent trends. 
-• What you learned in this project from an analysis and coding perspective
-    One of my big learnings was to always keep in mind what the goal for a piece of work is. For this, the goal was to warn about potential problems in cancer care if nothing changed. The goal wasn't to model the best predictions for what will happen in the next five years. 
-• Reflections on what you would do differently in another project
-    I would still have liked to explore a more robust modelling approach to this piece, maybe a general additive model so that we could build in some degree of plateau to the predictions, but time wasn't available to do that - especially after the poisson model we were using didn't seem to produce reliable results. 
+## Context 
 
-## Project aims
+During the run up to general election 2024, Cancer Research UK wanted to keep cancer high on the political agenda.
 
-This code was part of a project to model cancer waiting times over the next parliamentary term, during the run up to the general election with the aim of landing a high profile press story to help keep cancer high on the policy agenda, and support other influencing work.
+Waiting times had long been a pressing issue, and likely to generate press
 
-In line with this aim, there were three key pieces of information to generate:
+## The project
 
-1.  Number of urgent cancer referrals being made - tracked by NHS England as urgent suspected cancer referrals
-2.  Number of people starting treatment - tracked by NHS England with their 31 day wait metric
-3.  How many won't start their treatment within the NHS England target window - tracked via the NHS England 62 day wait metric
+Cancer waiting times over the next parliamentary term were identified as a good fit, looking at the size of demand for NHS services over the next 5 years if things don't change.
 
-Across all 3 metrics I used guassian linear regression modelling 
+This project focused on three key points:
+
+1.  Number of urgent cancer referrals being made
+2.  Number of people starting treatment - 31 day wait metric
+3.  How many won't start their treatment within the NHS England target window - 62 day wait metric
+
+Data: NHS England Cancer Waiting Times metrics (publicly available dataset)
 
 ```{r setup}
 #| code-fold: show
@@ -48,7 +45,85 @@ library(readxl)
 library(zoo)
 ```
 
+For each metric, I ran 3 models each starting with a different time period 2009 (start of recorded data), 2019 (five years of data), 2021 (post-COVID) and predicting the total number of patients for each month.
+
 ```{r}
+#| eval: false
+#| code-fold: show
+#| code-summary: example code for models
+#model from different start points with glm
+total_model <- glm(total ~ monthly, gaussian(), 
+                   data = USCR_predictions_ENG %>% 
+                     filter(!is.na(total)))
+
+total_model_from19 <- glm(total ~ monthly, gaussian(), 
+                          data = USCR_predictions_ENG %>% 
+                            filter(!is.na(total) & monthly > "2019-01-01"))
+
+#Make predictions
+USCR_predictions_ENG <- USCR_predictions_ENG %>%
+  mutate(
+    predicted_total = predict(total_model, 
+                              newdata = USCR_predictions_ENG, 
+                              type = "response"),
+    predicted_total_from19 = predict(total_model_from19, 
+                                     newdata = USCR_predictions_ENG, 
+                                     type = "response")
+  )
+```
+
+### Urgent cancer referrals
+
+```{r USCR.model}
+#| code-summary: Full referrals modelling code
+
+CWTUSC <- read_xlsx("data/CWT-CRS-National-Time-Series-Oct-2009-Jun-2024-with-Revisions.xlsx", 
+                    sheet = 5, range = "B4:C181") %>%
+  clean_names() %>%
+  mutate(monthly = as.Date(monthly))
+
+## Modelling
+USCR_predictions_ENG <- CWTUSC %>%
+  mutate(month_no = 1:nrow(CWTUSC)) %>%
+  select(monthly, total) %>%
+  arrange(monthly)
+
+future_dates <- data.frame(
+  monthly = seq.Date(from = max(CWTUSC$monthly) + months(1), 
+                     by = "month", length.out = 69)
+)
+
+USCR_predictions_ENG <- bind_rows(USCR_predictions_ENG, future_dates) 
+
+# Fit regression models to each list element using non NA i.e. historic data for COUNT in order to be used to offset the outside_target model
+total_model <- glm(total ~ monthly, gaussian(), 
+                   data = USCR_predictions_ENG %>% 
+                     filter(!is.na(total)))
+
+total_model_from19 <- glm(total ~ monthly, gaussian(), 
+                          data = USCR_predictions_ENG %>% 
+                            filter(!is.na(total) & monthly > "2019-01-01"))
+
+total_model_from21 <- glm(total ~ monthly, gaussian(), 
+                          data = USCR_predictions_ENG %>% 
+                            filter(!is.na(total) & monthly > "2021-01-01"))
+
+#Make predictions
+USCR_predictions_ENG <- USCR_predictions_ENG %>%
+  mutate(
+    predicted_total = predict(total_model, 
+                              newdata = USCR_predictions_ENG, 
+                              type = "response"),
+    predicted_total_from19 = predict(total_model_from19, 
+                                     newdata = USCR_predictions_ENG, 
+                                     type = "response"),
+    predicted_total_from21 = predict(total_model_from21, 
+                                     newdata = USCR_predictions_ENG, 
+                                     type = "response")
+  )
+```
+
+```{r rounding.function}
 #| code-summary: rounding function
 
 CRUKRoundingPerYear <- function(number){
@@ -150,48 +225,97 @@ CRUKRoundingPerYear <- function(number){
 }
 ```
 
-## Urgent cancer referrals
+```{r USCR.graph}
+#| code-summary: Visualising the different referrals models
+#| column: page-inset-right
+predictions_ENG_summary <- USCR_predictions_ENG %>% 
+  filter(monthly > "2024-06-01" & monthly < "2029-07-01") %>% 
+  summarise(predicted_total = sum(predicted_total),
+            predicted_total_from19 = sum(predicted_total_from19),
+            predicted_total_from21 = sum(predicted_total_from21))
 
-The dataset for this came directly from NHS England and didn't need much cleaning. I initially did a few different models with different start dates
-```{r model}
-#| code-summary: code for modelling
-CWTUSC <- read_xlsx("data/CWT-CRS-National-Time-Series-Oct-2009-Jun-2024-with-Revisions.xlsx", sheet = 5, range = "B4:C181") %>%
-  clean_names() %>%
-  mutate(monthly = as.Date(monthly))
-
-## Modelling
-USCR_predictions_ENG <- CWTUSC %>%
-  mutate(month_no = 1:nrow(CWTUSC)) %>%
-  select(monthly, total) %>%
-  arrange(monthly)
-
-future_dates <- data.frame(
-  monthly = seq.Date(from = max(CWTUSC$monthly) + months(1), by = "month", length.out = 69)
-)
-
-USCR_predictions_ENG <- bind_rows(USCR_predictions_ENG, future_dates) #%>% select(-4)
-
-# Fit regression models to each list element using non NA i.e. historic data for COUNT in order to be used to offset the outside_target model
-total_model <- glm(total ~ monthly, gaussian(), data = USCR_predictions_ENG %>% filter(!is.na(total)))
-
-total_model_from19 <- glm(total ~ monthly, gaussian(), data = USCR_predictions_ENG %>% filter(!is.na(total) & monthly > "2019-01-01"))
-
-total_model_from21 <- glm(total ~ monthly, gaussian(), data = USCR_predictions_ENG %>% filter(!is.na(total) & monthly > "2021-01-01"))
-
-total_model_precovid <- glm(total ~ monthly, gaussian(), data = USCR_predictions_ENG %>% filter(!is.na(total) & monthly < "2020-03-01"))
-
-#Make predictions
-USCR_predictions_ENG <- USCR_predictions_ENG %>%
-  mutate(
-    predicted_total = predict(total_model, newdata = USCR_predictions_ENG, type = "response"),
-    predicted_total_from19 = predict(total_model_from19, newdata = USCR_predictions_ENG, type = "response"),
-    predicted_total_from21 = predict(total_model_from21, newdata = USCR_predictions_ENG, type = "response"),
-    predicted_total_precovid = predict(total_model_precovid, newdata = USCR_predictions_ENG, type = "response"),
+plot_ly(USCR_predictions_ENG) %>%
+  add_trace(x = ~monthly, 
+            y = ~predicted_total,
+            name = paste0("2009 - ", 
+                          CRUKRoundingPerYear(predictions_ENG_summary$predicted_total), 
+                          " people"), 
+            line = list(color = "#ff0087", dash = 'dash'), 
+            type = 'scatter', 
+            mode = 'lines') %>%
+  add_trace(data = filter(USCR_predictions_ENG, monthly >= "2019-01-01"),
+            x = ~monthly, 
+            y = ~predicted_total_from19,
+            name = paste0("2019 - ", 
+                          CRUKRoundingPerYear(predictions_ENG_summary$predicted_total_from19), 
+                          " people"), 
+            line = list(color = "#009cee", dash = 'dash'), 
+            type = 'scatter', 
+            mode = 'lines') %>%
+  add_trace(data = filter(USCR_predictions_ENG, monthly >= "2021-01-01"),
+            x = ~monthly,
+            y = ~predicted_total_from21,
+            name = paste0("2021 - ", 
+                          CRUKRoundingPerYear(predictions_ENG_summary$predicted_total_from21), 
+                          " people"),
+            line = list(color = "#00007e", dash = 'dash'),
+            type = 'scatter',
+            mode = 'lines') %>%
+  add_trace(data = filter(USCR_predictions_ENG, monthly >= "2009-01-01"),
+            x = ~monthly,
+            y = ~total,
+            name = paste0("Historical data"),
+            line = list(color = "#000000"),
+            type = 'scatter',
+            mode = 'lines') %>%
+  config(displaylogo = FALSE,
+         toImageButtonOptions = list(
+           format = "png",
+           filename = paste0("England USC models"),
+           width = 1400,
+           height = 600)) %>%
+  layout(
+    showlegend = TRUE,
+    legend = list(
+      orientation = "h",
+      y = -0.1,
+      title = list(text = "Model starting year and predicted number of patients over next parliamentary term",
+                   font = list(family = "Poppins", color = "#000000", size = 18),
+                   side = "top"),
+      font =  list(family = "Poppins", color= "#000000", size= 14)
+      ),
+    yaxis = list(
+      title = "Number of people",
+      showgrid = T,
+      zeroline = T,
+      tickmode = 'auto',
+      tickformat = '~s',
+      nticks = 5,
+      range = c(0, 400000),
+      titlefont = list(family = "Poppins", color = "#000000", size = 18),
+      tickfont = list(family = "Poppins", color= "#000000", size= 14)),
+    xaxis = list(
+      title = "",
+      range = c("2010-01-01", "2030-01-01"),
+      tickmode = 'auto',
+      nticks = 12,
+      showgrid = F,
+      tickfont = list(family = "Poppins", color= "#000000", size= 14),
+      titlefont = list(family = "Poppins", color = "#000000", size = 18)),
+    title = list(text = "Number of urgent cancer referrals<br><sup>England</sup>",
+                 font = list(family = "Progress Medium",
+                             color = "#000000",size = 28),
+                 xref = 'container',
+                 xanchor = 'left',
+                 x = 0.01, y= 0.95),
+    margin = list(t = 80, b = 30)
   )
 
 ```
 
-```{r aggregate_numbers}
+```{r USCR.numbers}
+#| code-summary: Getting final numbers
+
 ## To get new aggregate number
 England_USC_prediction <- USCR_predictions_ENG %>%
   filter(monthly > "2024-06-01" & monthly < "2029-07-01") %>%
@@ -199,19 +323,24 @@ England_USC_prediction <- USCR_predictions_ENG %>%
     predicted_referrals_09 = sum(predicted_total),
     rounded_09 = CRUKRoundingPerYear(predicted_referrals_09),
     predicted_referrals_19 = sum(predicted_total_from19),
-    predicted_referrals_21 = sum(predicted_total_from21),
-    predicted_referrals_precovid = sum(predicted_total_precovid)
+    predicted_referrals_21 = sum(predicted_total_from21)
   )
 
 AnnualPercChange <- USCR_predictions_ENG %>%
   #mutate(year = as.numeric(format(date,'%Y'))) %>%
   filter(monthly >= "2023-07-01" & monthly < "2029-07-01") %>%
-  mutate(year = case_when(monthly > "2023-06-01" & monthly < "2024-07-01"  ~ "2023/24",
-                          monthly > "2024-06-01" & monthly < "2025-07-01"  ~ "2024/25",
-                          monthly > "2025-06-01" & monthly < "2026-07-01"  ~ "2025/26",
-                          monthly > "2026-06-01" & monthly < "2027-07-01"  ~ "2026/27",
-                          monthly > "2027-06-01" & monthly < "2028-07-01"  ~ "2027/28",
-                          monthly > "2028-06-01" & monthly < "2029-07-01"  ~ "2028/29")) %>%
+  mutate(year = case_when(monthly > "2023-06-01" 
+                          & monthly < "2024-07-01"  ~ "2023/24",
+                          monthly > "2024-06-01" 
+                          & monthly < "2025-07-01"  ~ "2024/25",
+                          monthly > "2025-06-01" 
+                          & monthly < "2026-07-01"  ~ "2025/26",
+                          monthly > "2026-06-01" 
+                          & monthly < "2027-07-01"  ~ "2026/27",
+                          monthly > "2027-06-01" 
+                          & monthly < "2028-07-01"  ~ "2027/28",
+                          monthly > "2028-06-01" 
+                          & monthly < "2029-07-01"  ~ "2028/29")) %>%
   group_by(year) %>%
   mutate(total = coalesce(total, predicted_total)) %>%
   summarise(total = sum(total))
@@ -223,27 +352,34 @@ AnnualPercChange <- AnnualPercChange %>%
          yearno = row_number())
 
 #increase in referrals at the end of term compared to 23/24
-USCPercChange <- round((AnnualPercChange[AnnualPercChange$year == "2028/29",]$total / AnnualPercChange[AnnualPercChange$year == "2023/24",]$total - 1) *100, 0)
+USCPercChange <- round((AnnualPercChange[AnnualPercChange$year == "2028/29",]$total 
+                        / AnnualPercChange[AnnualPercChange$year == "2023/24",]$total - 1) *100, 0)
 #Number
-ExtraReferrals <- (AnnualPercChange[AnnualPercChange$year == "2028/29",]$total - AnnualPercChange[AnnualPercChange$year == "2023/24",]$total)
+ExtraReferrals <- (AnnualPercChange[AnnualPercChange$year == "2028/29",]$total 
+                   - AnnualPercChange[AnnualPercChange$year == "2023/24",]$total)
 ```
 
-By 2029, there are expected to be `{r} USCPercChange`% more urgent cancer referrals than there were during the last year, which would be `{r} CRUKRoundingPerYear(ExtraReferrals)` people being referred for urgent suspected cancer. 
+Over the next five years, there are projected to be **`{r} England_USC_prediction$rounded_09` urgent suspected cancer referrals** in England.
 
+By 2029, there would be **`{r} USCPercChange`% more** urgent cancer referrals than there were during the last year, which would be **`{r} CRUKRoundingPerYear(ExtraReferrals)` people being referred for urgent suspected cancer**.
 
-## 31 day waits
-```{r}
-CWT31 <- read_csv("data/CWT_31day_Overall_2024-09-04.csv", show_col_types = FALSE) # From sst hub
+### 31 day waits
 
-# England ---- 
+```{r 31.Day.modelling}
+#| code-summary: modelling
+
+CWT31 <- read_csv("data/CWT_31day_Overall_2024-09-04.csv", 
+                  show_col_types = FALSE) # From sst hub
 
 ## Filtering and tidying names of main data
-## Going to use only First treatments to match historic and other nations data like picking USC route for 62 decision.
+# Going to use only First treatments to match historic and other nations data like picking USC route for 62 decision.
 CWT31ENG <- CWT31 %>%
   filter(Country == "England" & FirstOrSubsequent == "First Treatment") %>%
   select(1:8, -Country, -FirstOrSubsequent) %>%
   clean_names() %>%
-  mutate(date = format(floor_date(parse_date_time(date, orders = "my"), unit = "month")) %>% as.Date(format = "%Y-%m-%d"))
+  mutate(date = format(floor_date(parse_date_time(date, orders = "my"), 
+                                  unit = "month")) %>% 
+           as.Date(format = "%Y-%m-%d"))
 
 ## Modelling
 predictions_ENG <- CWT31ENG %>%
@@ -251,33 +387,45 @@ predictions_ENG <- CWT31ENG %>%
         select(date, count, outside_target, month_no) %>% 
         arrange(date)
 
-future_dates <- data.frame(date = seq.Date(from = max(CWT31ENG$date) + months(1), by = "month", length.out = 69),
+future_dates <- data.frame(date = seq.Date(from = max(CWT31ENG$date) + months(1), 
+                                           by = "month", length.out = 69),
                            month_no = seq(max(predictions_ENG$month_no) + 1,
                                                 max(predictions_ENG$month_no) + 69, 
-                                                length.out=length((max(predictions_ENG$month_no)+1):(max(predictions_ENG$month_no) + 69))),
+                                                length.out = length((max(predictions_ENG$month_no)+1):(max(predictions_ENG$month_no) + 69))),
                            outside_target = NA,
                            count = NA)
  
 predictions_ENG <- bind_rows(predictions_ENG, future_dates)
 
 # Fits guassian regression models to each list element using non NA i.e. historic data for COUNT in order to be used to offset the outside_target model
-Model_31_2009 <- glm(count ~ date, gaussian(), data = predictions_ENG %>% filter(!is.na(count)))
+Model_31_2009 <- glm(count ~ date, gaussian(), 
+                     data = predictions_ENG %>% 
+                       filter(!is.na(count)))
 
-Model_31_2019 <- glm(count ~ date, gaussian(), data = predictions_ENG %>% filter(!is.na(count) & date > "2019-01-01"))
+Model_31_2019 <- glm(count ~ date, gaussian(), 
+                     data = predictions_ENG %>% 
+                       filter(!is.na(count) & date > "2019-01-01"))
 
-Model_31_2021 <- glm(count ~ date, gaussian(), data = predictions_ENG %>% filter(!is.na(count) & date > "2021-01-01"))
-
-Model_31_precovid <- glm(count ~ date, gaussian(), data = predictions_ENG %>% filter(!is.na(count)& date < "2020-03-01"))
+Model_31_2021 <- glm(count ~ date, gaussian(), 
+                     data = predictions_ENG %>% 
+                       filter(!is.na(count) & date > "2021-01-01"))
 
 predictions_ENG <- predictions_ENG %>% 
-  mutate(predicted_count_2009 = predict(Model_31_2009, newdata = predictions_ENG, type = "response"),
-         predicted_count_2019 = predict(Model_31_2019, newdata = predictions_ENG, type = "response"),
-         predicted_count_2021 = predict(Model_31_2021, newdata = predictions_ENG, type = "response"),
-         predicted_count_precovid = predict(Model_31_precovid, newdata = predictions_ENG, type = "response"),
+  mutate(predicted_count_2009 = predict(Model_31_2009, 
+                                        newdata = predictions_ENG, 
+                                        type = "response"),
+         predicted_count_2019 = predict(Model_31_2019, 
+                                        newdata = predictions_ENG, 
+                                        type = "response"),
+         predicted_count_2021 = predict(Model_31_2021, 
+                                        newdata = predictions_ENG, 
+                                        type = "response")
   ) %>% 
   mutate(performance = 1-(outside_target/count),
-         average_6m_count = rollmean(count, 6, fill = NA, align = "right"),
-         average_6m_outside = rollmean(outside_target, 6, fill = NA, align = "right"),
+         average_6m_count = rollmean(count, 6, 
+                                     fill = NA, align = "right"),
+         average_6m_outside = rollmean(outside_target, 6, 
+                                       fill = NA, align = "right"),
          average_6m_perf = 1-(average_6m_outside/average_6m_count),
          multiplier = last(na.omit(average_6m_perf)))
 
@@ -287,8 +435,7 @@ predictions_ENG_summary <- predictions_ENG %>%
   filter(date > "2024-06-01" & date < "2029-07-01") %>% 
   summarise(predicted_count_2009 = sum(predicted_count_2009),
             predicted_count_2019 = sum(predicted_count_2019),
-            predicted_count_2021 = sum(predicted_count_2021),
-            predicted_count_precovid = sum(predicted_count_precovid))
+            predicted_count_2021 = sum(predicted_count_2021))
 
 England_outside <- predictions_ENG %>% 
   filter(date > "2024-06-01" & date < "2029-07-01") %>%
@@ -312,20 +459,25 @@ EnglandAnnualFigures <- predictions_ENG %>%
   summarise(count = sum(count))
 ```
 
-```{r}
-#| code-summary: graph code
+```{r 31.Day.graph}
+#| code-summary: Visualising the different 31 day models
+#| column: page-inset-right
+
 #graph
 eng_graph <- ggplot(predictions_ENG, aes(date)) +
   geom_line(aes(date, predicted_count_2009, 
-                colour = paste0("2009 - ", CRUKRoundingPerYear(predictions_ENG_summary$predicted_count_2009))), 
+                colour = paste0("2009 - ", 
+                                CRUKRoundingPerYear(predictions_ENG_summary$predicted_count_2009))), 
             linetype = "solid") +
   geom_line(data = filter(predictions_ENG, date > "2018-12-31"),
             aes(date, predicted_count_2019, 
-                colour = paste0("2019 - ", CRUKRoundingPerYear(predictions_ENG_summary$predicted_count_2019))), 
+                colour = paste0("2019 - ", 
+                                CRUKRoundingPerYear(predictions_ENG_summary$predicted_count_2019))), 
             linetype = "solid") +
   geom_line(data = filter(predictions_ENG, date > "2021-01-01"),
             aes(date, predicted_count_2021,
-                colour = paste0("2021 - ", CRUKRoundingPerYear(predictions_ENG_summary$predicted_count_2021))), 
+                colour = paste0("2021 - ", 
+                                CRUKRoundingPerYear(predictions_ENG_summary$predicted_count_2021))), 
             linetype = "solid") +
   annotate("segment", 
            x = as.Date("2024-06-30"), xend = as.Date("2024-06-30"), 
@@ -334,28 +486,35 @@ eng_graph <- ggplot(predictions_ENG, aes(date)) +
   geom_line(aes(date, count), linewidth=0.5)+
   labs(title = "England: 31-day model") +
   theme_minimal() +
-  scale_x_date(date_breaks = "2 years", date_labels = "%Y", limits = c(as.Date("2010-01-01"), as.Date("2029-06-30"))) +
+  scale_x_date(date_breaks = "2 years", date_labels = "%Y", 
+               limits = c(as.Date("2010-01-01"), as.Date("2029-06-30"))) +
   scale_color_discrete(name = "Model and prediction") + 
   theme(axis.text.x = element_text(angle = 45), legend.position = "bottom") 
 
 eng_graph <- plot_ly(predictions_ENG) %>%
   add_trace(x = ~date, 
             y = ~predicted_count_2009,
-            name = paste0("2009 - ", CRUKRoundingPerYear(predictions_ENG_summary$predicted_count_2009), " people"), 
+            name = paste0("2009 - ", 
+                          CRUKRoundingPerYear(predictions_ENG_summary$predicted_count_2009), 
+                          " people"), 
             line = list(color = "#ff0087", dash = 'dash'), 
             type = 'scatter', 
             mode = 'lines') %>%
   add_trace(data = filter(predictions_ENG, date >= "2019-01-01"),
             x = ~date, 
             y = ~predicted_count_2019,
-            name = paste0("2019 - ", CRUKRoundingPerYear(predictions_ENG_summary$predicted_count_2019), " people"), 
+            name = paste0("2019 - ", 
+                          CRUKRoundingPerYear(predictions_ENG_summary$predicted_count_2019), 
+                          " people"), 
             line = list(color = "#009cee", dash = 'dash'), 
             type = 'scatter', 
             mode = 'lines') %>%
   add_trace(data = filter(predictions_ENG, date >= "2021-01-01"),
             x = ~date, 
             y = ~predicted_count_2021,
-            name = paste0("2021 - ", CRUKRoundingPerYear(predictions_ENG_summary$predicted_count_2021), " people"), 
+            name = paste0("2021 - ", 
+                          CRUKRoundingPerYear(predictions_ENG_summary$predicted_count_2021), 
+                          " people"), 
             line = list(color = "#00007e", dash = 'dash'), 
             type = 'scatter', 
             mode = 'lines') %>%
@@ -402,35 +561,41 @@ eng_graph <- plot_ly(predictions_ENG) %>%
       titlefont = list(family = "Poppins", color = "#000000", size = 18)),
     title = list(text = "Number of people starting treatment on the 31-day pathway<br><sup>England</sup>", 
                  font = list(family = "Progress Medium", 
-                             color = "#000000",size = 28),
+                             color = "#000000",size = 24),
                  xref = 'container',
                  xanchor = 'left',
                  x = 0.01),
-    margin = list(t = 80, b = 30) #Set margin sizes with t, b, r, l. 
+    margin = list(t = 120, b = 30) #Set margin sizes with t, b, r, l. 
   ) 
 
 
 eng_graph
 ```
 
-## 62 day wait
-This data set need more cleaning as it needed to adjust for some changes in the 62 day measure that happened in October 2023
+In England between July 2024 and June 2029 there would be **around 1.8 million people starting cancer treatment**.
 
-```{r data_cleaning}
-CWT62 <- read_csv("data/CWT_62day_By cancer site_2024-09-05.csv", show_col_types = FALSE) # From sst hub
-# England ---- 
+### 62 day wait
 
+```{r 62.Day.cleaning}
+CWT62 <- read_csv("data/CWT_62day_By cancer site_2024-09-05.csv", 
+                  show_col_types = FALSE) # From sst hub
 ## Filtering and tidying names of main data
 CWT62ENG <- CWT62 %>%
   filter(Country == "England" & RefRoute == "Urgent Suspected Cancer") %>%
   select(-Country) %>%
   clean_names() %>%
-  mutate(date = format(floor_date(parse_date_time(date, orders = "my"), unit = "month")) %>% as.Date(format = "%Y-%m-%d"))
+  mutate(date = format(floor_date(parse_date_time(date, orders = "my"), 
+                                  unit = "month")) %>% 
+           as.Date(format = "%Y-%m-%d"))
 
 ## Old other routes data NB: all sites
 CWT_historic_other_routes_allsite <- rbind(
-  (readxl::read_xlsx("data/Cancer-Waiting-Times-National-Time-Series-Oct-2009-Sep-2023-with-Revisions.xlsx", sheet = 2, range="AY4:BC172") %>% mutate(ref_route = "Screening")), # 
-  (readxl::read_xlsx("data/Cancer-Waiting-Times-National-Time-Series-Oct-2009-Sep-2023-with-Revisions.xlsx", sheet =2, range = "BF4:BJ172") %>%  mutate(ref_route = "Consultant Upgrade"))
+  (readxl::read_xlsx("data/Cancer-Waiting-Times-National-Time-Series-Oct-2009-Sep-2023-with-Revisions.xlsx", 
+                     sheet = 2, range="AY4:BC172") %>% 
+     mutate(ref_route = "Screening")), # 
+  (readxl::read_xlsx("data/Cancer-Waiting-Times-National-Time-Series-Oct-2009-Sep-2023-with-Revisions.xlsx", 
+                     sheet =2, range = "BF4:BJ172") %>%  
+     mutate(ref_route = "Consultant Upgrade"))
 ) %>% 
   clean_names() %>% 
   mutate(date = as.Date(monthly, format = "%Y-%m-%d"),
@@ -448,12 +613,21 @@ CWT62ENG <- bind_rows(CWT62ENG, CWT_historic_other_routes_allsite)
 rm(CWT_historic_other_routes_allsite)
 
 #Sep23-recent new routes data 
-newroutes_data <- read_csv("data/CWT_62day_By cancer site_2024-09-05.csv", show_col_types = FALSE) %>% 
+newroutes_data <- read_csv("data/CWT_62day_By cancer site_2024-09-05.csv", 
+                           show_col_types = FALSE) %>% 
   clean_names() %>% 
-  filter(ref_route %in% c("Consultant Upgrade", "Screening") | date %in% c("Oct-23", "Nov-23", "Dec-23", "Jan-24", "Feb-24", "Mar-24", "Apr-24", "May-24", "Jun-24")) %>% 
-  filter(!factor %in% c("Urological (excl. prostate)","Prostate", "Gynaecological", "Lymphoma", "Haematological (excl. lymphoma)", "Head and neck", "Other (new grouping)", "Oesophagus and stomach", "Hepatobiliary") ) %>% #download includes both separate and combined routes for other and uro so below can remove the separate new sites
+  filter(ref_route %in% c("Consultant Upgrade", "Screening") 
+         | date %in% c("Oct-23", "Nov-23", "Dec-23", "Jan-24", "Feb-24", 
+                       "Mar-24", "Apr-24", "May-24", "Jun-24")) %>% 
+  filter(!factor %in% c("Urological (excl. prostate)","Prostate", 
+                        "Gynaecological", "Lymphoma", 
+                        "Haematological (excl. lymphoma)", "Head and neck", 
+                        "Other (new grouping)", "Oesophagus and stomach", 
+                        "Hepatobiliary") ) %>% #download includes both separate and combined routes for other and uro so below can remove the separate new sites
   select(date, ref_route, total = count, within_target, outside_target)%>% 
-  mutate(date = format(floor_date(parse_date_time(date, orders = "my"), unit = "month")) %>% as.Date(format = "%Y-%m-%d"),
+  mutate(date = format(floor_date(parse_date_time(date, orders = "my"), 
+                                  unit = "month")) %>% 
+           as.Date(format = "%Y-%m-%d"),
          factor = "All") %>% 
   group_by(date, ref_route, factor) %>%
   summarise(
@@ -468,10 +642,12 @@ rm(newroutes_data)
 
 ## Fixing site names and grouping
 CWT62ENG <- CWT62ENG %>%
-  select(-standard_hit, -additional_patients, -target_last_met, -rank, -standard) %>%
+  select(-standard_hit, -additional_patients, -target_last_met, 
+         -rank, -standard) %>%
   filter(!factor %in% c("Urological (excl. prostate)", "Prostate", 
-                        "Gynaecological", "Lymphoma", "Haematological (excl. lymphoma)", 
-                        "Head and neck", "Other (new grouping)", "Oesophagus and stomach", 
+                        "Gynaecological", "Lymphoma", 
+                        "Haematological (excl. lymphoma)", "Head and neck", 
+                        "Other (new grouping)", "Oesophagus and stomach", 
                         "Hepatobiliary") ) %>% #download includes both separate and combined routes for other and uro so below can remove the separate new sites
   group_by(factor, ref_route, date) %>%
   summarise(
@@ -496,7 +672,7 @@ names(CWT62ENGsplit) <- CWT62ENG %>%
   pull(name)
 ```
 
-```{r modelling}
+```{r 62.Day.modelling}
 ## Modelling
 predictions_ENG <- CWT62ENGsplit %>%
   enframe(name = "list", value = "data") %>% # converts lists to single df
@@ -511,7 +687,8 @@ predictions_ENG <- CWT62ENGsplit %>%
       last_date <- max(df$date)
       last_no <- max(df$month_no)
       #future_dates <- seq.Date(from = last_date + months(1), by = "month", length.out = 60)
-      future_dates <- data.frame(date = seq.Date(from = last_date + months(1), by = "month", length.out = 69),
+      future_dates <- data.frame(date = seq.Date(from = last_date + months(1), 
+                                                 by = "month", length.out = 69),
                                  month_no = seq(last_no + 1,
                                                 last_no + 69, 
                                                 length.out=length((last_no+1):(last_no + 69))),
@@ -521,10 +698,21 @@ predictions_ENG <- CWT62ENGsplit %>%
     }),
     
     # Fits gaussian regression models to each list element using non NA i.e. historic data for COUNT in order to be used to offset the outside_target model
-    count_model_09 = map(data, \(df) glm(count ~ month_no, gaussian(), data = df %>% filter(!is.na(count)))),
-    count_model_19 = map(data, \(df) glm(count ~ month_no, gaussian(), data = df %>% filter(!is.na(count) & date > "2019-01-01"))),
-    count_model_21 = map(data, \(df) glm(count ~ month_no, gaussian(), data = df %>% filter(!is.na(count) & date > "2021-01-01"))),
-    count_model_precovid = map(data, \(df) glm(count ~ month_no, gaussian(), data = df %>% filter(!is.na(count) & date < "2020-03-01"))),
+    count_model_09 = map(data, \(df) glm(count ~ month_no, gaussian(), 
+                                         data = df %>% 
+                                           filter(!is.na(count)))),
+    count_model_19 = map(data, \(df) glm(count ~ month_no, gaussian(), 
+                                         data = df %>% 
+                                           filter(!is.na(count) 
+                                                  & date > "2019-01-01"))),
+    count_model_21 = map(data, \(df) glm(count ~ month_no, gaussian(), 
+                                         data = df %>% 
+                                           filter(!is.na(count) 
+                                                  & date > "2021-01-01"))),
+    count_model_precovid = map(data, \(df) glm(count ~ month_no, gaussian(), 
+                                               data = df %>% 
+                                                 filter(!is.na(count) 
+                                                        & date < "2020-03-01"))),
     
     # function to use the models to predict the NA rows for count
     data = map2(count_model_09, data, \(mod, df) { 
@@ -550,18 +738,22 @@ predictions_ENG <- CWT62ENGsplit %>%
     }),
     data = map2(count_model_precovid, data, \(mod, df) { 
       data <- df
-      data$predicted_count_precovid <- predict(mod, newdata = data, type = "response")
+      data$predicted_count_precovid <- predict(mod, newdata = data, 
+                                               type = "response")
       data$predicted_count_precovid <- data$predicted_count_precovid
       #data$predicted_count_precovid[!is.na(data$count)] <- NA #Remove predictions for data we already have as redundant
       data
     })
   ) %>%
   unnest(data) %>% 
-  select(-count_model_09, -count_model_19, count_model_21, count_model_precovid) %>% 
+  select(-count_model_09, -count_model_19, 
+         count_model_21, count_model_precovid) %>% 
   group_by(list) %>% 
   mutate(performance = 1-(outside_target/count),
-         average_6m_count = rollmean(count, 6, fill = NA, align = "right"),
-         average_6m_outside = rollmean(outside_target, 6, fill = NA, align = "right"),
+         average_6m_count = rollmean(count, 6, fill = NA, 
+                                     align = "right"),
+         average_6m_outside = rollmean(outside_target, 6, fill = NA, 
+                                       align = "right"),
          average_6m_perf = 1-(average_6m_outside/average_6m_count),
          multiplier = last(na.omit(average_6m_perf))) %>% 
   ungroup() %>%
@@ -574,7 +766,9 @@ predictions_ENG <- CWT62ENGsplit %>%
 
 ## To get new aggregate number
 #Projected patients starting treatment over 5 years
-England_count <- sum(filter(predictions_ENG, date >= "2024-07-01" & date < "2029-07-01")$predicted_count_09, na.rm = TRUE)
+England_count <- sum(filter(predictions_ENG, date >= "2024-07-01" 
+                            & date < "2029-07-01")$predicted_count_09, 
+                     na.rm = TRUE)
 
 #Projected number of patients needed to meet target
 England_outside <- predictions_ENG %>% 
@@ -596,8 +790,10 @@ predictions_ENG_all <- predictions_ENG %>% mutate(country = "England") %>%
             predicted_count_precovid = sum(predicted_count_precovid)) %>%
   ungroup() %>%
   mutate(performance = 1-(outside_target/count),
-         average_6m_count = rollmean(count, 6, fill = NA, align = "right"),
-         average_6m_outside = rollmean(outside_target, 6, fill = NA, align = "right"),
+         average_6m_count = rollmean(count, 6, fill = NA, 
+                                     align = "right"),
+         average_6m_outside = rollmean(outside_target, 6, fill = NA, 
+                                       align = "right"),
          average_6m_perf = 1-(average_6m_outside/average_6m_count),
          multiplier = last(na.omit(average_6m_perf))) %>% 
   mutate(predicted_outside = predicted_count_09 * (1-multiplier),
@@ -605,21 +801,21 @@ predictions_ENG_all <- predictions_ENG %>% mutate(country = "England") %>%
          cancer_type = "All")
 
 # Annual change figure for England ------
-# Spoke with Sam on this one, and he suggested that the normal way to get a 
-# percentage change is to do a quick glm and get the coefficient. Didn't use our
-# actual model because we wanted it to be compared to 2023/24 instead of the full
-# trend. Poisson model is here because we played with that out of interest, but
-# it basically came to a similar number anyways. Going with 2.3% as our yearly change.
-
 EnglandAnnualFigures <- predictions_ENG_all %>%
   mutate(year = as.numeric(format(date,'%Y'))) %>%
   filter(date >= "2023-07-01" & date < "2029-07-01") %>%
-  mutate(year = case_when(date > "2023-06-01" & date < "2024-07-01"  ~ "2023/24",
-                          date > "2024-06-01" & date < "2025-07-01" ~ "2024/25",
-                          date > "2025-06-01" & date < "2026-07-01"  ~ "2025/26",
-                          date > "2026-06-01" & date < "2027-07-01"  ~ "2026/27",
-                          date > "2027-06-01" & date < "2028-07-01"  ~ "2027/28",
-                          date > "2028-06-01" & date < "2029-07-01"  ~ "2028/29")) %>%
+  mutate(year = case_when(date > "2023-06-01" 
+                          & date < "2024-07-01"  ~ "2023/24",
+                          date > "2024-06-01" 
+                          & date < "2025-07-01" ~ "2024/25",
+                          date > "2025-06-01" 
+                          & date < "2026-07-01"  ~ "2025/26",
+                          date > "2026-06-01" 
+                          & date < "2027-07-01"  ~ "2026/27",
+                          date > "2027-06-01" 
+                          & date < "2028-07-01"  ~ "2027/28",
+                          date > "2028-06-01" 
+                          & date < "2029-07-01"  ~ "2028/29")) %>%
   group_by(year) %>%
   mutate(count = coalesce(count, predicted_count_09)) %>%
   summarise(count = sum(count))
@@ -640,16 +836,14 @@ EnglandAnnualFigures <- EnglandAnnualFigures %>%
          new_total = count+ increase)
 ```
 
-```{r}
+```{r 62.Day.model.graph}
+#| column: page-inset-right
 predictions_ENG_summary <- predictions_ENG_all %>% 
   filter(date > "2024-06-01" & date < "2029-07-01") %>% 
   summarise(predicted_count_09 = sum(predicted_count_09),
             predicted_count_19 = sum(predicted_count_19),
-            predicted_count_21 = sum(predicted_count_21),
-            predicted_count_precovid = sum(predicted_count_precovid))
-```
+            predicted_count_21 = sum(predicted_count_21))
 
-```{r}
 plot_ly(predictions_ENG_all) %>%
   add_trace(x = ~date, 
             y = ~predicted_count_09,
@@ -729,6 +923,119 @@ plot_ly(predictions_ENG_all) %>%
   ) 
 ```
 
-## What would I do differently?
+```{r 62.Day.performance.graph}
+#| column: page-inset-right
 
-Initially I had started out using a poisson/quasi-poisson model approach with some adjustments (such as varying the number of natural splines). 
+dataP <- predictions_ENG_all %>%
+  group_by(date, cancer_type) %>% 
+  summarise(count = sum(count),
+            outside_target = sum(outside_target),
+            predicted_count = sum(predicted_count_09),
+            predicted_outside = sum(predicted_outside)) %>% 
+  select(date, cancer_type, count, outside_target, 
+         predicted_count, predicted_outside ) %>%
+  pivot_longer(
+    cols = c(count, outside_target, predicted_count, predicted_outside),
+    names_to = "type",
+    values_to = "number"
+  ) %>%
+  mutate(
+    label = str_to_sentence(type) # Left this in case we want to adjust later
+  ) %>%
+  filter(type == "count" 
+         | type == "outside_target"
+         | (type == "predicted_count" & date > as.Date("2024-06-01"))
+         | (type == "predicted_outside" & date > as.Date("2024-06-01")))
+
+colour_mapping <- c("Count" = "#000000",
+                    "Predicted_count" = "#e60078", #bce4fa", 
+                    "Outside_target" = "#777777",
+                    "Predicted_outside" = "#009cee" #"#f088b6"
+)
+
+
+dataP <- dataP %>% 
+  mutate(line_type = case_when(type == "Count" ~ "solid",
+                               type == "Predicted_count" ~ "dashed",
+                               type == "Outside_target" ~ "solid",
+                               type == "Predicted_outside" ~ "dashed"))
+
+p <- ggplot(dataP) +
+  geom_line(aes(x = date, y = number, colour = label, linetype = "solid"), linewidth = 0.7) +
+  scale_colour_manual(values = colour_mapping) +
+  #scale_x_date(breaks = "12 months", date_labels = "%b %Y", expand = expansion(mult = c(0, 0.03))) +
+  scale_x_date(date_breaks = "2 years", date_labels = "%Y", limits = c(as.Date("2010-01-01"), as.Date("2029-06-30"))) +
+  scale_y_continuous(labels = scales::comma,
+                     expand = expansion(mult = c(0, 0.03))) +
+ # labs(title = "Number of people starting treatment outside of the 62-day target window") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(#angle = 45, 
+    hjust = 1)) +
+  guides(linetype = "none")
+
+ciTitleFont <- list(family = "Progress Medium", color = "#000000",size = 24)
+ciAxisFont <- list(family = "Poppins", color = "#000000", size = 18) 
+ciTickFont <- list(family = "Poppins", color= "#000000", size = 14)
+
+
+P <- ggplotly(p) %>%
+  layout(yaxis = list(title = "Number of patients", 
+                      titlefont = ciAxisFont, 
+                      tickfont = ciTickFont,
+                      standoff = 20,
+                      tickmode = 'auto',
+                      tickformat = '~s',
+                      nticks = 5,
+                      range = c(0,30000),
+                      showgrid = TRUE,
+                      zeroline = T,
+                      zerolinecolor = '#000000' 
+                      ),
+         xaxis = list(title = "",
+                      titlefont = ciAxisFont, 
+                      tickfont = ciTickFont,
+                      showgrid = F
+                      ),
+         title = list(
+           text = "Number of people starting treatment outside of the 62-day target window<br><sup>England</sup>",
+           font = ciTitleFont,
+           xref = 'container',
+           xanchor = 'left',
+           x = 0.01),
+         legend = list(
+           orientation = "h",
+           y = -0.1,
+           title = list(text = ""),
+           font =  list(family = "Poppins", color= "#000000", size= 14)
+         ),
+         margin = list(t = 80, r = 50, b = 150)
+  ) %>% 
+  config(displaylogo = FALSE,
+         toImageButtonOptions = list(
+           format = "png",
+           filename = "62day_projections_ENG",
+           width = 1400,
+           height = 600))
+P$x$data[[1]]$name <- "Number of people starting treatment"
+P$x$data[[2]]$name <- "Number of people starting treatment\noutside of the 62 day window"
+P$x$data[[3]]$name <- "Projected number of people starting\ntreatment"
+P$x$data[[4]]$name <- "Projected number of people starting\ntreatment outside of the 62 daywindow"
+P$x$layout$legend$title <- ""
+P[["x"]][["data"]][[3]][["line"]][["dash"]] <- 'dot'
+P[["x"]][["data"]][[4]][["line"]][["dash"]] <- 'dot'
+P
+```
+
+If the government does not ensure the NHS is equipped to deal with this, **more than 300,000 cancer patients who are urgently referred could wait longer than they should** for cancer treatment between now and 2029.
+
+## Key learnings
+
+Modelling doesn't need to be complex, it needs to make sense.
+
+Initially used a poisson model approach with some adjustments, but the results didn't look reasonable. With time pressure of an election cycle, stripping it back to something simpler meant we could still deliver results and have an influence.
+
+## What would I do differently? 
+
+If we had more time, I would explore other modelling approaches - binomial or GAM
+
+Had done similar projections for each devolved nation, and local areas. Would have been great to explore these more - use shiny so people could search for their area and see how it compares to the national picture.
